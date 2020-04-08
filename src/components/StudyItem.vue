@@ -1,13 +1,13 @@
 <template>
   <div id="study_item">
     <div id="item_container">
-      <div class="topic_container" v-for="item in itemDict" :key="item.id">
-        <label :for="item.topic">
-          <h2 class="topic">{{ item.topic }}</h2>
+      <div class="topic_container" v-for="item in itemList" :key="item.id">
+        <label :for="item.tile">
+          <h2 class="topic">{{ item.title }}</h2>
         </label>
-        <input type="checkbox" :id="item.topic"/>
+        <input type="checkbox" :id="item.title"/>
         <div class="hidden_show">
-          <p class="topic_content">{{ item.content }}</p>
+          <p class="topic_content">{{ item.main }}</p>
         </div>
       </div>
     </div>
@@ -18,24 +18,12 @@
 
 export default {
   name: 'StudyItem',
+  props: {
+    item_list: Array
+  },
   data () {
     return {
-      itemDict: [{ topic: '・おすすめの授業は？', content: 'おすすめの授業の一つに情報メディア創成学類開設のコンテンツ応用論という授業があります。この授業は落合先生がこの国の最前線で活躍されている人をゲストに招いて行う授業で, ...' },
-                 { topic: '・授業が面白くないと感じたら...', content: 'たとえ興味があって取った授業でも、いざ受けてみると「想像と違う...」みたいなこともよくあります。そのような時はどうすればよいのでしょうか？実は...' }]
-    }
-  },
-  created: function(){
-    this.getTopics();
-  },
-  methods: {
-    getTopics: function(){
-      this.axios.get('http://192.168.32.139:8081/api/topic/')
-      .then(response => {
-        this.itemDict.push(response.data);
-      })
-      .catch(error => {
-        window.alert(error);
-      });
+      itemList: this.item_list
     }
   }
 }

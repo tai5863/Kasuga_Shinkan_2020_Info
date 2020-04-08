@@ -6,7 +6,7 @@
           <h1 class="study_title1">履修</h1>
           <h2 class="study_title2">について</h2>
         </div>
-        <StudyItem></StudyItem>
+        <StudyItem :item_list="itemList"></StudyItem>
       </div>
       <div id="item_button_container">
         <router-link to="/life"><ItemButton02 class="item_button"></ItemButton02></router-link>
@@ -27,6 +27,14 @@ export default {
     ItemButton02,
     ItemButton03,
     StudyItem
+  },
+  props: {
+    study_list: Array
+  },
+  data () {
+    return {
+      itemList: this.study_list
+    }
   }
 }
 </script>

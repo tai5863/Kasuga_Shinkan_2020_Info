@@ -6,7 +6,7 @@
           <h1 class="life_title1">生活</h1>
           <h2 class="life_title2">について</h2>
         </div>
-        <LifeItem></LifeItem>
+        <LifeItem :item_list="itemList"></LifeItem>
       </div>
       <div id="item_button_container">
         <router-link to="/study"><ItemButton01 class="item_button"></ItemButton01></router-link>
@@ -27,6 +27,14 @@ export default {
     ItemButton01,
     ItemButton03,
     LifeItem
+  },
+  props: {
+    life_list: Array
+  },
+  data () {
+    return {
+      itemList: this.life_list
+    }
   }
 }
 </script>

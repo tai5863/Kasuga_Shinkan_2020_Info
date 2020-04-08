@@ -6,7 +6,7 @@
           <h1 class="senior_title1">先輩</h1>
           <h2 class="senior_title2">について</h2>
         </div>
-        <SeniorItem></SeniorItem>
+        <SeniorItem :item_list="itemList"></SeniorItem>
       </div>
       <div id="item_button_container">
         <router-link to="/study"><ItemButton01 class="item_button"></ItemButton01></router-link>
@@ -27,6 +27,14 @@ export default {
     ItemButton01,
     ItemButton02,
     SeniorItem
+  },
+  props: {
+    senior_list: Array
+  },
+  data () {
+    return {
+      itemList: this.senior_list
+    }
   }
 }
 </script>
