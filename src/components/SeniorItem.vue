@@ -2,12 +2,12 @@
   <div id="senior_item">
     <div id="item_container">
       <div class="topic_container" v-for="item in itemList" :key="item.id">
-        <label :for="item.topic">
-          <h2 class="topic">{{ item.topic }}</h2>
+        <label :for="item.id">
+          <h2 class="topic">{{ item.title }}</h2>
         </label>
-        <input type="checkbox" :id="item.topic"/>
+        <input type="checkbox" :id="item.id"/>
         <div class="hidden_show">
-          <p class="topic_content">{{ item.content }}</p>
+          <p class="topic_content">{{ item.main }}</p>
         </div>
       </div>
     </div>
