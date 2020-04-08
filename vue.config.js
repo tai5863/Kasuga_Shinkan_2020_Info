@@ -1,4 +1,4 @@
 module.exports = {
-    publicPath: '/kasuga-shinkan-info/',
+    publicPath: '/Kasuga_Shinkan_2020_Info/',
     outputDir: 'docs'
   }
