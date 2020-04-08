@@ -1,7 +1,7 @@
 <template>
   <div id="senior_item">
     <div id="item_container">
-      <div class="topic_container" v-for="item in itemDict" :key="item.id">
+      <div class="topic_container" v-for="item in itemList" :key="item.id">
         <label :for="item.topic">
           <h2 class="topic">{{ item.topic }}</h2>
         </label>
