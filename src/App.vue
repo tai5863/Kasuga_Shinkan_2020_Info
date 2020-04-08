@@ -28,7 +28,7 @@ export default {
   },
   methods: {
     getPosts: function(){
-      this.axios.get('http://ec2-18-188-53-245.us-east-2.compute.amazonaws.com/api/topic/')
+      this.axios.get('https://kzkymur.com/api/topic/')
       .then(response => {
         for (let i = 0; i < response.data.topic.length; i++) {
           
