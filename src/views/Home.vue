@@ -1,5 +1,6 @@
 <template>
   <div id="home">
+    <Header></Header>
     <div id="container">
       <div id="about_live_container">
         <div class="about_title_container">
@@ -13,7 +14,7 @@
           <h1 class="about_title1">このサイト</h1>
           <h2 class="about_title2">について</h2>
         </div>
-        <p class="about_content">この春日新歓2020情報Webは春日新歓委員が行うライブ配信の内容をベースに新入生向けのお役立ち情報をまとめたサイトです。各トピックごとに該当する生配信のリンクを張り付けているのでそちらの方も参考にしていただけるとより分かりやすいと思います。</p>
+        <p class="about_content">この春日新歓2020情報Weはb春日新歓委員が行うライブ配信の内容をベースに新入生向けのお役立ち情報をまとめたサイトです。各トピックごとに該当する生配信のリンクを張り付けているのでそちらの方も参考にしていただけるとより分かりやすいと思います。</p>
         <p class="about_content">また、<a @click="openTwitter" id="twitter">春日新歓2020公式Twitterアカウント</a>でも質問を受け付けておりますのでぜひご活用ください。</p>
       </div>
       <div id="item_button_container">
@@ -21,21 +22,26 @@
         <router-link to="/life"><ItemButton02 class="item_button"></ItemButton02></router-link>
         <router-link to="/senior"><ItemButton03 class="item_button"></ItemButton03></router-link>
       </div>
+      <AddQuestion></AddQuestion>
     </div>
   </div>
 </template>
 
 <script>
+import Header from '@/components/Header.vue'
 import ItemButton01 from '@/components/ItemButton01.vue'
 import ItemButton02 from '@/components/ItemButton02.vue'
 import ItemButton03 from '@/components/ItemButton03.vue'
+import AddQuestion from '@/components/AddQuestion.vue'
 
 export default {
   name: 'Home',
   components: {
+    Header,
     ItemButton01,
     ItemButton02,
-    ItemButton03
+    ItemButton03,
+    AddQuestion
   },
   methods: {
     openTwitter: function(){
@@ -103,7 +109,7 @@ export default {
   }
 }
 
-@media screen and (min-width: 481px) and (max-width: 780px){
+@media screen and (min-width: 481px) and (max-width: 850px){
   #container {
     color: rgb(75, 75, 75);
     margin-left: 50px;
@@ -141,7 +147,7 @@ export default {
   }
 }
 
-@media screen and (min-width: 781px){
+@media screen and (min-width: 851px){
   #container {
     color: rgb(75, 75, 75);
     margin-left: 125px;

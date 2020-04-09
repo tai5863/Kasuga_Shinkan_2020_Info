@@ -27,6 +27,29 @@ Vue.use(VueRouter)
     path: '/senior',
     name: 'Senior',
     component: () => import(/* webpackChunkName: "about" */ '../views/Senior.vue')
+  },
+  {
+    path: '/authentication_for_committee_member',
+    name: 'Auth',
+    component: () => import(/* webpackChunkName: "about" */ '../views/Auth.vue')
+  },
+  {
+    path: '/authentication_for_committee_member/form',
+    name: 'Form',
+    component: () => import(/* webpackChunkName: "about" */ '../views/Form.vue'),
+    meta: { requiresAuth: true }
+  },
+  {
+    path: '/authentication_for_committee_member/question',
+    name: 'Question',
+    component: () => import(/* webpackChunkName: "about" */ '../views/Question.vue'),
+    meta: { requiresAuth: true }
+  },
+  {
+    path: '/authentication_for_committee_member/edit',
+    name: 'Edit',
+    component: () => import(/* webpackChunkName: "about" */ '../views/Edit.vue'),
+    meta: { requiresAuth: true }
   }
 ]
 
@@ -34,6 +57,24 @@ const router = new VueRouter({
   mode: 'history',
   base: process.env.BASE_URL,
   routes
+})
+
+router.isPass = false;
+
+router.beforeEach((to, from, next) => {
+  if (to.matched.some(record => record.meta.requiresAuth)) {
+    
+    if (router.isPass == false) {
+      next({
+        path: '/authentication_for_committee_member/',
+        query: { redirect: to.fullPath }
+      })
+    } else {
+      next()
+    }
+  } else {
+    next() 
+  }
 })
 
 export default router

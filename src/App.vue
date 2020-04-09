@@ -1,19 +1,16 @@
 <template>
   <div id="app">
-    <Header></Header>
     <router-view :study_list="this.studyList" :life_list="this.lifeList" :senior_list="this.seniorList"></router-view>
     <Footer id="footer"></Footer>
   </div>
 </template>
 
 <script>
-import Header from './components/Header.vue'
 import Footer from './components/Footer.vue'
 
 export default {
   name: 'App',
   components: {
-    Header,
     Footer
   },
   data () {
@@ -32,13 +29,13 @@ export default {
       .then(response => {
         for (let i = 0; i < response.data.topic.length; i++) {
           
-          if (response.data.topic[i].category == '履修') {
+          if (response.data.topic[i].category == '大学') {
             
             this.studyList.push(response.data.topic[i]);
           } else if (response.data.topic[i].category == '生活') {
 
             this.lifeList.push(response.data.topic[i]);
-          } else {
+          } else if (response.data.topic[i].category == '先輩'){
 
             this.seniorList.push(response.data.topic[i]);
           }

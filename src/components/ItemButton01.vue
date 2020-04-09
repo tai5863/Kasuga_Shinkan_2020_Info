@@ -13,7 +13,7 @@ export default {
   name: 'ItemButton01',
   data () {
     return {
-      title: '履修'
+      title: '大学'
     }
   }
 }

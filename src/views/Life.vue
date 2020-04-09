@@ -1,5 +1,6 @@
 <template>
   <div id="life">
+    <Header></Header>
     <div id="container">
       <div id="life_container">
         <div class="life_title_container">
@@ -12,21 +13,26 @@
         <router-link to="/study"><ItemButton01 class="item_button"></ItemButton01></router-link>
         <router-link to="/senior"><ItemButton03 class="item_button"></ItemButton03></router-link>
       </div>
+      <AddQuestion></AddQuestion>
     </div>
   </div>
 </template>
 
 <script>
+import Header from '@/components/Header.vue'
 import ItemButton01 from '@/components/ItemButton01.vue'
 import ItemButton03 from '@/components/ItemButton03.vue'
 import LifeItem from '@/components/LifeItem.vue'
+import AddQuestion from '@/components/AddQuestion.vue'
 
 export default {
   name: 'Study',
   components: {
+    Header,
     ItemButton01,
     ItemButton03,
-    LifeItem
+    LifeItem,
+    AddQuestion
   },
   props: {
     life_list: Array
@@ -44,7 +50,18 @@ export default {
   #container {
     margin-left: 50px;
     margin-right: 50px;
-    text-align: unset;
+    text-align: center;
+  }
+  .life_title1 {
+    font-size: 40px;
+    display: inline;
+  }
+  .life_title2 { 
+    font-size: 30px;
+    display: inline;
+  }
+  #item_button_container {
+    margin-top: 40px;
   }
 }
 
@@ -53,6 +70,14 @@ export default {
     color: rgb(75, 75, 75);
     margin-left: 50px;
     margin-right: 50px;
+  }
+  .life_title1 {
+    font-size: 40px;
+    display: inline;
+  }
+  .life_title2 { 
+    font-size: 30px;
+    display: inline;
   }
   #item_button_container {
     max-width: 600px;
