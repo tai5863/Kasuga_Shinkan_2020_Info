@@ -22,7 +22,7 @@
           </div>
           <div class="item_container">
             <h2 class="form_title">執筆者</h2>
-            <input type="text" class="input1" v-model="author" @keyup.enter="send()">
+            <input type="text" class="input1" v-model="author">
           </div> 
           <input class="send" value="送信する" @click="send()">
         </form>
