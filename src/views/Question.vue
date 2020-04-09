@@ -57,8 +57,7 @@ export default {
       params.append('YouTube', this.YouTube);
       params.append('author', this.author);
       this.axios.post('https://kzkymur.com/api/topic/', params)
-      .then(response => {
-        console.log(response.data.topic);
+      .then(() => {
       })
       .catch(error => {
         window.alert(error);

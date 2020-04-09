@@ -60,19 +60,15 @@ export default {
         params.append('title', this.title);
         this.axios.post('https://kzkymur.com/api/topic/', params)
         .then(response => {
-          console.log(response.data.topic);
           this.main = response.data.topic.main;
         })
         .catch(error => {
-          window.alert(error.response.data.topic);
+          window.alert(error);
         });
       } else if (this.category != '大学' && this.category != '生活' && this.category != '先輩' && this.category != 'edit') {
         window.alert('項目は大学・生活・先輩・editのいづれかです！');
         return;
       }
-    },
-    getContent: function(){
-
     },
     send: function(){
       if (this.category != '大学' && this.category != '生活' && this.category != '先輩' && this.category != 'edit') {
@@ -90,9 +86,8 @@ export default {
         params.append('youtube_link', this.youtube_link);
         params.append('author', this.author);
         this.axios.post('https://kzkymur.com/api/manage_topic/', params)
-        .then(response => {
+        .then(() => {
           window.alert('正しく投稿できました！🎉');
-          console.log(response.data.topic);
           this.title = '';
           this.category = '';
           this.main = '';
@@ -100,7 +95,7 @@ export default {
           this.author = '';
         })
         .catch(error => {
-          window.alert(error.response.data.message);
+          window.alert(error);
         });
       }
     }

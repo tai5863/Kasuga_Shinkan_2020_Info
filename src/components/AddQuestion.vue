@@ -39,14 +39,13 @@ export default {
         params.append('category', this.category);
         params.append('main', this.question);
         this.axios.post('https://kzkymur.com/api/manage_question/', params)
-        .then(response => {
-          console.log(response.data.topic);
+        .then(() => {
           window.alert('正しく投稿できました！🎉');
           this.category = '';
           this.question = '';
         })
         .catch(error => {
-          window.alert(error.response.data);
+          window.alert(error);
         });
       }
     }
