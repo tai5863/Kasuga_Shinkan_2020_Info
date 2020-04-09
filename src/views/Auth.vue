@@ -33,9 +33,16 @@ export default {
       let params = new URLSearchParams();
       params.append('password', this.pass);
       this.axios.post('https://kzkymur.com/api/password/', params)
-      .then(() => {
-        window.alert('正しく投稿できました！🎉');
+      .then(response => {
         this.pass = '';
+        this.$router.isPass = response.data.result;
+        if (this.$router.isPass) {
+          window.alert('正しく認証できました！');
+        } else {
+          window.alert('パスワードが正しくありません！');
+        }
+        this.$router.pass = response.data.key;
+        this.$router.push('/Authentication_for_committee_member/form');
       })
       .catch(error => {
         window.alert(error.response.data);

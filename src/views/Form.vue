@@ -46,7 +46,8 @@ export default {
       main: '',
       youtube_link: '',
       author: '',
-      eCategory: ''
+      eCategory: '',
+      pass: this.$router.pass
     }
   },
   mounted: function(){
@@ -85,6 +86,7 @@ export default {
         params.append('main', this.main);
         params.append('youtube_link', this.youtube_link);
         params.append('author', this.author);
+        params.append('key', this.pass);
         this.axios.post('https://kzkymur.com/api/manage_topic/', params)
         .then(() => {
           window.alert('正しく投稿できました！🎉');
