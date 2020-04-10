@@ -6,7 +6,7 @@
         <form>
           <div class="item_container">
             <h2 class="form_title">トピック</h2>
-            <input type="text" class="input1" placeholder="例 : 履修はいつから？" v-model="title">
+            <input type="text" class="input1" id="topic" placeholder="例 : 履修はいつから？" v-model="title">
           </div>
           <div class="item_container">
             <h2 class="form_title">項目</h2>
@@ -16,7 +16,8 @@
             <h2 class="form_title">内容</h2>
             <textarea class="input2" placeholder="例 : 16日からです！11日に時間割が出るので、少なくともそれまでは何もしなくてもOK！
 
-※トピックを削除したい場合は内容にdeleteと入力してください。" v-model="main"></textarea>
+※トピックを削除したい場合は項目にedit, 内容にdeleteを入力してください。
+※すでにあるトピックの内容を編集したい場合は項目にeditを入力してください。" v-model="main"></textarea>
           </div> 
           <div class="item_container">
             <h2 class="form_title">YouTubeの時間指定付きリンク</h2>
@@ -49,14 +50,23 @@ export default {
       youtube_link: '',
       author: '',
       eCategory: '',
-      pass: this.$router.pass
+      pass: this.$router.pass,
+      trueTitle: '',
+      trueAuther: ''
     }
   },
   mounted: function(){
     this.eCategory = document.getElementById('category');
     this.eCategory.addEventListener('blur', this.searchTitle);
+    this.eTopic = document.getElementById('topic');
+    this.eTopic.addEventListener('blur', this.judge);
   },
   methods: {
+    judge: function(){
+      if (this.category == 'edit') {
+        this.searchTitle();
+      } 
+    },
     searchTitle: function(){
       if (this.category == 'edit') {
         let params = new URLSearchParams();
@@ -64,9 +74,10 @@ export default {
         this.axios.post('https://kzkymur.com/api/topic/', params)
         .then(response => {
           this.main = response.data.topic.main;
+          this.trueAuther = response.data.topic.author;
         })
-        .catch(error => {
-          window.alert(error);
+        .catch(() => {
+          window.alert('このトピックは存在しません😓');
         });
       } else if (this.category != '大学' && this.category != '生活' && this.category != '先輩' && this.category != 'edit') {
         window.alert('項目は大学・生活・先輩・editのいづれかです！');
@@ -75,10 +86,17 @@ export default {
       }
     },
     send: function(){
-      if (this.topic == '' || this.category == '' || this.main == '' || this.author == '') {
+      if (this.category == 'edit') {
+        if (this.author != this.trueAuther) {
+          window.alert('執筆者が違います😓');
+          this.author = '';
+          return;
+        }
+      }
+      if (this.title == '' || this.category == '' || this.main == '' || this.author == '') {
         window.alert('トピック・項目・内容・執筆者は必須項目です！');
         return;
-      } else if (this.category != '大学' && this.category != '生活' && this.category != '先輩') {
+      } else if (this.category != '大学' && this.category != '生活' && this.category != '先輩' && this.category != 'edit') {
         window.alert('項目は大学・生活・先輩のいづれかです！');
         return;
       } else {
@@ -100,7 +118,7 @@ export default {
           this.author = '';
         })
         .catch(error => {
-          window.alert(error);
+          window.alert(error.response.data.message);
         });
       }
     }

@@ -111,7 +111,7 @@ export default {
       this.category = question.category;
     },
     send: function(){
-      if (this.topic == '' || this.category == '' || this.main == '' || this.author == '') {
+      if (this.title == '' || this.category == '' || this.main == '' || this.author == '') {
         window.alert('トピック・項目・内容・執筆者は必須項目です！');
         return;
       } else if (this.category != '大学' && this.category != '生活' && this.category != '先輩') {
