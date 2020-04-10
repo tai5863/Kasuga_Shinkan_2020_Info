@@ -28,19 +28,6 @@ export default {
     return {
       itemList: this.item_list
     }
-  },
-  created: function(){
-    for (let i = 0; i < this.itemList.length; i++) {
-      this.itemList[i].isYouTube = false;
-      if (this.itemList[i].youtube_link == '') {
-        this.itemList[i].isYouTube = false;
-      } else {
-        this.itemList[i].isYouTube = true;
-        let youtube_link = this.itemList[i].youtube_link.replace('youtu.be', 'www.youtube.com/embed');
-        youtube_link = youtube_link.replace('t=', 'start=');
-        this.itemList[i].youtube_link = youtube_link;
-      }
-    }
   }
 }
 </script>
@@ -118,12 +105,16 @@ export default {
   opacity: 0;
   transition: 500ms;
 }
+.hidden_show iframe {
+  width: 0;
+  height: 0;
+}
 .topic_container input:checked ~ .hidden_show {
-  padding: 10px 0;
+  padding: 5px 0;
   height: auto;
   opacity: 1;
 }
-.iframe_container iframe {
+.topic_container input:checked ~ .hidden_show iframe{
   width: calc(25vw + 150px); 
   height: calc((25vw + 150px) * 0.5625);
 }

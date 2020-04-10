@@ -1,12 +1,17 @@
 <template>
   <div id="footer_comp">
-    <img src="@/assets/UTLogo_150.png" id="tsukuba">
+    <img src="@/assets/UTLogo_150.png" id="tsukuba" @click="openTsukubaUniv()">
   </div>
 </template>
 
 <script>
 export default {
-  name: 'Footer'
+  name: 'Footer',
+  methods: {
+    openTsukubaUniv: function(){
+      window.open('http://www.tsukuba.ac.jp/');
+    }
+  }
 }
 </script>
 

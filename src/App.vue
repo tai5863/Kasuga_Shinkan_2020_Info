@@ -1,6 +1,8 @@
 <template>
   <div id="app">
-    <router-view :study_list="this.studyList" :life_list="this.lifeList" :senior_list="this.seniorList"></router-view>
+    <transition name="trans">
+      <router-view :study_list="this.studyList" :life_list="this.lifeList" :senior_list="this.seniorList"></router-view>
+    </transition>
     <Footer id="footer"></Footer>
   </div>
 </template>
@@ -68,5 +70,14 @@ export default {
 }
 #footer {
   margin-top: 50px;
+}
+.trans-enter {
+  opacity: 0;
+}
+.trans-enter-to {
+  opacity: 1;
+}
+.trans-enter-active {
+  transition: all 1.5s 0s;
 }
 </style>
