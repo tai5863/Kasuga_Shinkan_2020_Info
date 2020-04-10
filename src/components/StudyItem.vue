@@ -3,13 +3,13 @@
     <div id="item_container">
       <div class="topic_container" v-for="item in itemList" :key="item.id">
         <label :for="item.id">
-          <h2 class="topic" @click="uncheck()">{{ item.title }}</h2>
+          <h2 class="topic">{{ item.title }}</h2>
         </label>
         <input type="checkbox" :id="item.id"/>
         <div class="hidden_show">
           <p class="topic_content">{{ item.main }}</p>
           <div class="iframe_container">
-            <iframe src="https://www.youtube.com/embed/crFJLJUGdq0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            <iframe v-if="item.isYouTube" :src="item.youtube_link" frameborder="0" autoplay="0" allow="accelerometer; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
           </div>
         </div>
       </div>
@@ -29,20 +29,16 @@ export default {
       itemList: this.item_list
     }
   },
-  mounted: function(){
+  created: function(){
     for (let i = 0; i < this.itemList.length; i++) {
-      this.inputList.push(String(this.itemList[i].id));
-    }
-  },
-  methods: {
-    uncheck: function(id){
-      let idx = this.inputList.indexOf(id);
-      if (idx >= 0) {
-        this.inputList.splice(idx, 1);
-      }
-      for (let i = 0; i < this.inputList.length; i++) {
-        let input = document.getElementById(this.inputList[i]);
-        input.checked = false;
+      this.itemList[i].isYouTube = false;
+      if (this.itemList[i].youtube_link == '') {
+        this.itemList[i].isYouTube = false;
+      } else {
+        this.itemList[i].isYouTube = true;
+        let youtube_link = this.itemList[i].youtube_link.replace('youtu.be', 'www.youtube.com/embed');
+        youtube_link = youtube_link.replace('t=', 'start=');
+        this.itemList[i].youtube_link = youtube_link;
       }
     }
   }
@@ -52,7 +48,7 @@ export default {
 <style scoped>
 @media screen and (max-width: 480px) {
   .topic {
-    font-size: 22px;
+    font-size: 20px;
     margin: 0;
     text-align: left;
   }
@@ -60,7 +56,7 @@ export default {
 
 @media screen and (min-width: 481px) and (max-width: 780px){
   .topic { 
-    font-size: 25px;
+    font-size: 20px;
     display: inline;
     cursor: pointer;
   }
@@ -71,7 +67,7 @@ export default {
 
 @media screen and (min-width: 780px){
   .topic { 
-    font-size: 30px;
+    font-size: 25px;
     display: inline;
     cursor: pointer;
   }
@@ -92,6 +88,7 @@ export default {
 @media screen and (min-width: 1201px){
   .topic_container input:checked ~ .hidden_show {
     display: flex;
+    justify-content: space-between;
   }
   p {
     display: inline;
@@ -99,6 +96,11 @@ export default {
   .iframe_container {
     display: inline;
     margin-left: 5%;
+  }
+  .iframe_container {
+    display: inline;
+    margin-left: 5%;
+    margin-right: 5%;
   }
 }
 

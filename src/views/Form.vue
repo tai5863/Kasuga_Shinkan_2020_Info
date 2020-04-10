@@ -14,7 +14,9 @@
           </div>
           <div class="item_container">
             <h2 class="form_title">内容</h2>
-            <textarea class="input2" placeholder="例 : 16日からです！11日に時間割が出るので、少なくともそれまでは何もしなくてもOK！" v-model="main"></textarea>
+            <textarea class="input2" placeholder="例 : 16日からです！11日に時間割が出るので、少なくともそれまでは何もしなくてもOK！
+
+※トピックを削除したい場合は内容にdeleteと入力してください。" v-model="main"></textarea>
           </div> 
           <div class="item_container">
             <h2 class="form_title">YouTubeの時間指定付きリンク</h2>
@@ -68,15 +70,16 @@ export default {
         });
       } else if (this.category != '大学' && this.category != '生活' && this.category != '先輩' && this.category != 'edit') {
         window.alert('項目は大学・生活・先輩・editのいづれかです！');
+        this.category = '';
         return;
       }
     },
     send: function(){
-      if (this.category != '大学' && this.category != '生活' && this.category != '先輩' && this.category != 'edit') {
-        window.alert('項目は大学・生活・先輩・editのいづれかです！');
+      if (this.topic == '' || this.category == '' || this.main == '' || this.author == '') {
+        window.alert('トピック・項目・内容・執筆者は必須項目です！');
         return;
-      } else if (this.topic == '' || this.main == '' || this.author == '') {
-        window.alert('トピック・内容・執筆者は必須項目です！');
+      } else if (this.category != '大学' && this.category != '生活' && this.category != '先輩') {
+        window.alert('項目は大学・生活・先輩のいづれかです！');
         return;
       } else {
         let params = new URLSearchParams();

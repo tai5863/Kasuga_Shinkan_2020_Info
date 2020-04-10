@@ -2,6 +2,35 @@
   <div id="question">
     <Header1 class="header"></Header1>
     <div id="container">
+      <div id="questions_container">
+        <div id="study_container" class="question">
+          <div class="title_container">
+            <h1 class="question_title1">大学</h1>
+            <h2 class="question_title2">について</h2>
+          </div>
+          <div class="topic_container" v-for="item in studyList" :key="item.id">
+            <p class="topic_content" @click="selectQuestion(item)">{{ item.main }}</p>
+          </div>
+        </div>
+        <div id="life_container" class="question">
+          <div class="title_container">
+            <h1 class="question_title1">生活</h1>
+            <h2 class="question_title2">について</h2>
+          </div>
+          <div class="topic_container" v-for="item in lifeList" :key="item.id">
+            <p class="topic_content" @click="selectQuestion(item)">{{ item.main }}</p>
+          </div>
+        </div>
+        <div id="senior_container" class="question">
+          <div class="title_container">
+            <h1 class="question_title1">先輩</h1>
+            <h2 class="question_title2">について</h2>
+          </div>
+          <div class="topic_container" v-for="item in seniorList" :key="item.id">
+            <p class="topic_content" @click="selectQuestion(item)">{{ item.main }}</p>
+          </div>
+        </div>
+      </div>
       <div id="form_container">
         <form>
           <div class="item_container">
@@ -10,7 +39,7 @@
           </div>
           <div class="item_container">
             <h2 class="form_title">項目</h2>
-            <input type="text" class="input1" placeholder="履修・生活・先輩のいづれか" v-model="type"> 
+            <input type="text" class="input1" placeholder="大学・生活・先輩のいづれか" v-model="category"> 
           </div>
           <div class="item_container">
             <h2 class="form_title">回答</h2>
@@ -18,7 +47,7 @@
           </div> 
           <div class="item_container">
             <h2 class="form_title">YouTubeの時間指定付きリンク</h2>
-            <input type="text" class="input1" v-model="youtube"> 
+            <input type="text" class="input1" v-model="youtube_link"> 
           </div>
           <div class="item_container">
             <h2 class="form_title">執筆者</h2>
@@ -41,27 +70,75 @@ export default {
   },
   data () {
     return {
+      studyList: [],
+      lifeList: [],
+      seniorList: [],
       title: '',
-      type: '',
+      category: '',
       main: '',
-      youtube: '',
-      author: ''
+      youtube_link: '',
+      author: '',
+      pass: this.$router.pass
     }
   },
+  created: function(){
+    this.getPost();
+  },
   methods: {
-    send: function(){
-      let params = new URLSearchParams();
-      params.append('title', this.title);
-      params.append('type', this.type);
-      params.append('main', this.main);
-      params.append('YouTube', this.YouTube);
-      params.append('author', this.author);
-      this.axios.post('https://kzkymur.com/api/topic/', params)
-      .then(() => {
+    getPost: function(){
+      this.axios.get('https://kzkymur.com/api/question/')
+      .then(response => {
+        for (let i = 0; i < response.data.question.length; i++) {
+          
+          if (response.data.question[i].category == '大学') {
+            
+            this.studyList.push(response.data.question[i]);
+          } else if (response.data.question[i].category == '生活') {
+
+            this.lifeList.push(response.data.question[i]);
+          } else if (response.data.question[i].category == '先輩'){
+
+            this.seniorList.push(response.data.question[i]);
+          }
+        }
       })
       .catch(error => {
         window.alert(error);
       });
+    },
+    selectQuestion: function(question){
+      this.title = question.main;
+      this.category = question.category;
+    },
+    send: function(){
+      if (this.topic == '' || this.category == '' || this.main == '' || this.author == '') {
+        window.alert('トピック・項目・内容・執筆者は必須項目です！');
+        return;
+      } else if (this.category != '大学' && this.category != '生活' && this.category != '先輩') {
+        window.alert('項目は大学・生活・先輩のいづれかです！');
+        return;
+      } else {
+        let params = new URLSearchParams();
+        params.append('serial_num', 0);
+        params.append('title', this.title);
+        params.append('category', this.category);
+        params.append('main', this.main);
+        params.append('youtube_link', this.youtube_link);
+        params.append('author', this.author);
+        params.append('key', this.pass);
+        this.axios.post('https://kzkymur.com/api/manage_topic/', params)
+        .then(() => {
+          window.alert('正しく投稿できました！🎉');
+          this.title = '';
+          this.category = '';
+          this.main = '';
+          this.youtube_link = '';
+          this.author = '';
+        })
+        .catch(error => {
+          window.alert(error);
+        });
+      }
     }
   }
 }
@@ -76,7 +153,6 @@ export default {
   #container {
     margin-left: 50px;
     margin-right: 50px;
-    text-align: center;
   }
 }
 
@@ -88,6 +164,51 @@ export default {
   }
 }
 
+@media screen and (min-width: 1451px){
+  .question {
+    margin-right: 50px;
+  }
+  #questions_container {
+    display: flex;
+    justify-content: space-between;
+  }
+}
+
+.question {
+  margin-top: 70px;
+}
+#senior_container {
+  margin-right: 0;
+}
+.title_container {
+  border-bottom: solid 10px orange;
+  display: inline-block;
+  line-height: 1;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  width: 200px;
+}
+.question_title1 {
+  display: inline;
+  font-size: 40px;
+}
+.question_title2 {
+  display: inline;
+  font-size: 30px;
+}
+.topic_container {
+  font-size: 20px;
+  font-weight: 1000;
+}
+.topic_continer {
+  position: relative;
+}
+.topic_content {
+  text-align: left;
+}
+p {
+  cursor: pointer;
+}
 .form_title_container {
   border-bottom: solid 10px orange;
   display: inline-block;

@@ -44,12 +44,6 @@ Vue.use(VueRouter)
     name: 'Question',
     component: () => import(/* webpackChunkName: "about" */ '../views/Question.vue'),
     meta: { requiresAuth: true }
-  },
-  {
-    path: '/Authentication_for_committee_member/edit',
-    name: 'Edit',
-    component: () => import(/* webpackChunkName: "about" */ '../views/Edit.vue'),
-    meta: { requiresAuth: true }
   }
 ]
 

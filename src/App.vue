@@ -21,13 +21,24 @@ export default {
     }
   },
   created(){
-    this.getPosts();
+    this.getPost();
   },
   methods: {
-    getPosts: function(){
+    getPost: function(){
       this.axios.get('https://kzkymur.com/api/topic/')
       .then(response => {
         for (let i = 0; i < response.data.topic.length; i++) {
+
+          response.data.topic[i].isYouTube = false;
+
+          if (response.data.topic[i].youtube_link == '') {
+            response.data.topic[i].isYouTube = false;
+          } else {
+            response.data.topic[i].isYouTube = true;
+            let youtube_link = response.data.topic[i].youtube_link.replace('youtu.be', 'www.youtube.com/embed');
+            youtube_link = youtube_link.replace('t=', 'start=');
+            response.data.topic[i].youtube_link = youtube_link;
+          }
           
           if (response.data.topic[i].category == '大学') {
             
