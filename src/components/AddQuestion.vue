@@ -7,7 +7,7 @@
           <h2 class="form_title">項目</h2>
           <input type="text" class="input1" placeholder="大学・生活・先輩のいづれか" v-model="category"> 
           <h2 class="form_title">内容</h2>
-          <textarea class="input2" placeholder="例 : 履修登録はいつから始まりますか？" v-model="question" @keyup.enter="send()"></textarea>
+          <textarea class="input2" placeholder="例 : 履修登録はいつから始まりますか？" v-model="question"></textarea>
         </div> 
         <input class="send" value="送信する" @click="send()">
     </form>

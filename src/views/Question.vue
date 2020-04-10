@@ -119,10 +119,9 @@ export default {
         return;
       } else {
         let params = new URLSearchParams();
-        params.append('serial_num', 0);
         params.append('title', this.title);
         params.append('category', this.category);
-        params.append('main', this.main);
+        params.append('question_main', this.main);
         params.append('youtube_link', this.youtube_link);
         params.append('author', this.author);
         params.append('key', this.pass);
@@ -137,6 +136,7 @@ export default {
         })
         .catch(error => {
           window.alert(error);
+          console.log(error.response.data.message);
         });
       }
     }
