@@ -70,6 +70,10 @@ export default {
   .iframe_container iframe {
      margin-top: 5vw;
   }
+  .topic_container input:checked ~ .hidden_show iframe{
+    width: calc(30vw + 150px); 
+    height: calc((30vw + 150px) * 0.5625);
+  }
 }
 
 @media screen and (min-width: 1201px){
@@ -89,10 +93,14 @@ export default {
     margin-left: 5%;
     margin-right: 5%;
   }
+  .topic_container input:checked ~ .hidden_show iframe{
+    width: calc(25vw + 150px); 
+    height: calc((25vw + 150px) * 0.5625);
+  }
 }
 
 .topic_container {
-  margin-top: 20px;
+  margin-top: 30px;
 }
 .topic_content {
   margin-top: 15px;
