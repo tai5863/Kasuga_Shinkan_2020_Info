@@ -9,7 +9,7 @@
           <h2 class="form_title">内容</h2>
           <textarea class="input2" placeholder="例 : 履修登録はいつから始まりますか？" v-model="question"></textarea>
         </div> 
-        <input class="send" value="送信する" @click="send()" type="send">
+        <input class="send" value="送信する" @click="send()" type="submit">
     </form>
     </div>
   </div>

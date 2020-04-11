@@ -10,7 +10,7 @@
           </div>
           <div class="topic_container" v-for="i in studyList.length" :key="i">
             <p class="topic_content" @click="selectQuestion(studyList[i - 1], isShow1)">{{ studyList[i - 1].main }}</p>
-            <input class="delete" value="削除" @click="deleteQuestion(studyList[i - 1])" type="send" v-if="isShow1">
+            <input class="delete" value="削除" @click="deleteQuestion(studyList[i - 1])" type="submit" v-if="isShow1">
           </div>
         </div>
         <div id="life_container" class="question">
@@ -20,7 +20,7 @@
           </div>
           <div class="topic_container" v-for="i in lifeList.length" :key="i">
             <p class="topic_content" @click="selectQuestion(lifeList[i - 1], isShow2)">{{ lifeList[i - 1].main }}</p>
-            <input class="delete" value="削除" @click="deleteQuestion(lifeList[i - 1])" type="send" v-if="isShow2">
+            <input class="delete" value="削除" @click="deleteQuestion(lifeList[i - 1])" type="submit" v-if="isShow2">
           </div>
         </div>
         <div id="senior_container" class="question">
@@ -30,7 +30,7 @@
           </div>
           <div class="topic_container" v-for="i in seniorList.length" :key="i">
             <p class="topic_content" @click="selectQuestion(seniorList[i - 1], isShow3)">{{ seniorList[i - 1].main }}</p>
-            <input class="delete" value="削除" @click="deleteQuestion(seniorList[i - 1])" type="send" v-if="isShow3">
+            <input class="delete" value="削除" @click="deleteQuestion(seniorList[i - 1])" type="submit" v-if="isShow3">
           </div>
         </div>
       </div>
@@ -56,7 +56,7 @@
             <h2 class="form_title">執筆者</h2>
             <input type="text" class="input1" v-model="author">
           </div> 
-          <input class="send" value="送信する" @click="send()" type="send">
+          <input class="send" value="送信する" @click="send()" type="submit">
         </form>
       </div>
     </div>
