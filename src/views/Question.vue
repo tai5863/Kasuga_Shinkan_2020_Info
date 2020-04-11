@@ -276,6 +276,7 @@ p {
   padding: 0;
 }
 .delete {
+  -webkit-appearance: none;
   margin-left: 10px;
   display: inline-block;
   width: 50px;
@@ -340,6 +341,7 @@ form {
   resize: none;
 }
 .send {
+  -webkit-appearance: none;
   width: 31%;
   min-width: 150px;
   color: white;
