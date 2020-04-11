@@ -41,6 +41,10 @@ export default {
     return {
       itemList: this.senior_list
     }
+  },
+  created: function(){
+    this.$router.isPass = false;
+    this.$router.pass = '';
   }
 }
 </script>

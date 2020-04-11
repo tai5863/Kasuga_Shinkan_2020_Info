@@ -100,26 +100,31 @@ export default {
         window.alert('項目は大学・生活・先輩のいづれかです！');
         return;
       } else {
-        let params = new URLSearchParams();
-        params.append('serial_num', 0);
-        params.append('title', this.title);
-        params.append('category', this.category);
-        params.append('main', this.main);
-        params.append('youtube_link', this.youtube_link);
-        params.append('author', this.author);
-        params.append('key', this.pass);
-        this.axios.post('https://kzkymur.com/api/manage_topic/', params)
-        .then(() => {
-          window.alert('正しく投稿できました！🎉');
-          this.title = '';
-          this.category = '';
-          this.main = '';
-          this.youtube_link = '';
-          this.author = '';
-        })
-        .catch(error => {
-          window.alert(error.response.data.message);
-        });
+        let generator = confirm('この内容で投稿しますか？');
+        if (generator == true) {
+          let params = new URLSearchParams();
+          params.append('serial_num', 0);
+          params.append('title', this.title);
+          params.append('category', this.category);
+          params.append('main', this.main);
+          params.append('youtube_link', this.youtube_link);
+          params.append('author', this.author);
+          params.append('key', this.pass);
+          this.axios.post('https://kzkymur.com/api/manage_topic/', params)
+          .then(() => {
+            window.alert('正しく投稿できました！🎉');
+            this.title = '';
+            this.category = '';
+            this.main = '';
+            this.youtube_link = '';
+            this.author = '';
+          })
+          .catch(error => {
+            window.alert(error.response.data.message);
+          });
+        } else {
+          return;
+        }
       }
     }
   }

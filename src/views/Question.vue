@@ -10,6 +10,7 @@
           </div>
           <div class="topic_container" v-for="item in studyList" :key="item.id">
             <p class="topic_content" @click="selectQuestion(item)">{{ item.main }}</p>
+            <input class="delete" value="削除" @click="deleteQuestion(item)">
           </div>
         </div>
         <div id="life_container" class="question">
@@ -19,6 +20,7 @@
           </div>
           <div class="topic_container" v-for="item in lifeList" :key="item.id">
             <p class="topic_content" @click="selectQuestion(item)">{{ item.main }}</p>
+            <input class="delete" value="削除" @click="deleteQuestion(item)">
           </div>
         </div>
         <div id="senior_container" class="question">
@@ -28,6 +30,7 @@
           </div>
           <div class="topic_container" v-for="item in seniorList" :key="item.id">
             <p class="topic_content" @click="selectQuestion(item)">{{ item.main }}</p>
+            <input class="delete" value="削除" @click="deleteQuestion(item)">
           </div>
         </div>
       </div>
@@ -110,6 +113,27 @@ export default {
       this.title = question.main;
       this.category = question.category;
     },
+    deleteQuestion: function(question){
+      let generator = confirm('本当に削除しますか？');
+      if (generator == true) {
+        let params = new URLSearchParams();
+        params.append('mode', 1);
+        params.append('category', question.category);
+        params.append('main', question.main);
+        params.append('key', this.pass);
+        this.axios.post('https://kzkymur.com/api/manage_question/', params)
+        .then(() => {
+          window.alert('正しく削除できました！😁');
+          this.$router.isPass = true;
+          this.$router.go({path: this.$router.currentRoute.path, force: true});
+        })
+        .catch(error => {
+          window.alert(error);
+        });
+      } else {
+        return;
+      }
+    },
     send: function(){
       if (this.title == '' || this.category == '' || this.main == '' || this.author == '') {
         window.alert('トピック・項目・内容・執筆者は必須項目です！');
@@ -118,26 +142,31 @@ export default {
         window.alert('項目は大学・生活・先輩のいづれかです！');
         return;
       } else {
-        let params = new URLSearchParams();
-        params.append('title', this.title);
-        params.append('category', this.category);
-        params.append('question_main', this.main);
-        params.append('youtube_link', this.youtube_link);
-        params.append('author', this.author);
-        params.append('key', this.pass);
-        this.axios.post('https://kzkymur.com/api/manage_topic/', params)
-        .then(() => {
-          window.alert('正しく投稿できました！🎉');
-          this.title = '';
-          this.category = '';
-          this.main = '';
-          this.youtube_link = '';
-          this.author = '';
-        })
-        .catch(error => {
-          window.alert(error);
-          console.log(error.response.data.message);
-        });
+        let generator = confirm('この内容で投稿しますか？');
+        if (generator == true) {
+          let params = new URLSearchParams();
+          params.append('title', this.title);
+          params.append('category', this.category);
+          params.append('question_main', this.title);
+          params.append('main', this.main);
+          params.append('youtube_link', this.youtube_link);
+          params.append('author', this.author);
+          params.append('key', this.pass);
+          this.axios.post('https://kzkymur.com/api/manage_topic/', params)
+          .then(() => {
+            window.alert('正しく投稿できました！🎉');
+            this.title = '';
+            this.category = '';
+            this.main = '';
+            this.youtube_link = '';
+            this.author = '';
+          })
+          .catch(error => {
+            window.alert(error);
+          });
+        } else {
+          return;
+        }
       }
     }
   }
@@ -199,15 +228,35 @@ export default {
 .topic_container {
   font-size: 20px;
   font-weight: 1000;
-}
-.topic_continer {
-  position: relative;
-}
-.topic_content {
   text-align: left;
 }
 p {
   cursor: pointer;
+  display: inline;
+  padding: 0;
+}
+.delete {
+  margin-left: 10px;
+  display: inline-block;
+  width: 50px;
+  border: 1px solid rgba(0, 0, 0, 0.3);
+  border-radius: 7px;
+  color: rgb(75, 75, 75);
+  background-color: white;
+  font-size: 13px;
+  font-weight: 1000;
+  font-family: "游ゴシック", "Yu Gothic", "游ゴシック体", YuGothic, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  padding: 5px 0;
+  margin-bottom: 10px;
+  cursor: pointer;
+  transition: 500ms;
+  text-align: center;
+}
+.delete:hover {
+  transform: scale(1.05);	
+	transition-duration: 0.3s;	
 }
 .form_title_container {
   border-bottom: solid 10px orange;

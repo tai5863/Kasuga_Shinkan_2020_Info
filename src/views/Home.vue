@@ -43,6 +43,10 @@ export default {
     ItemButton03,
     AddQuestion
   },
+  created: function(){
+    this.$router.isPass = false;
+    this.$router.pass = '';
+  },
   methods: {
     openTwitter: function(){
       const url = "https://twitter.com/kasuga2020?s=20";
