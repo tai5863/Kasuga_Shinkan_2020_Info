@@ -118,9 +118,10 @@ export default {
             this.main = '';
             this.youtube_link = '';
             this.author = '';
+            this.getPost();
           })
           .catch(error => {
-            window.alert(error.response.data.message);
+            window.alert(error);
           });
         } else {
           return;

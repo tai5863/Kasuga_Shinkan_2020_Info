@@ -8,9 +8,9 @@
             <h1 class="question_title1">大学</h1>
             <h2 class="question_title2">について</h2>
           </div>
-          <div class="topic_container" v-for="item in studyList" :key="item.id">
-            <p class="topic_content" @click="selectQuestion(item)">{{ item.main }}</p>
-            <input class="delete" value="削除" @click="deleteQuestion(item)">
+          <div class="topic_container" v-for="i in studyList.length" :key="i">
+            <p class="topic_content" @click="selectQuestion(studyList[i - 1], isShow1)">{{ studyList[i - 1].main }}</p>
+            <input class="delete" value="削除" @click="deleteQuestion(studyList[i - 1])" type="send" v-if="isShow1">
           </div>
         </div>
         <div id="life_container" class="question">
@@ -18,9 +18,9 @@
             <h1 class="question_title1">生活</h1>
             <h2 class="question_title2">について</h2>
           </div>
-          <div class="topic_container" v-for="item in lifeList" :key="item.id">
-            <p class="topic_content" @click="selectQuestion(item)">{{ item.main }}</p>
-            <input class="delete" value="削除" @click="deleteQuestion(item)">
+          <div class="topic_container" v-for="i in lifeList.length" :key="i">
+            <p class="topic_content" @click="selectQuestion(lifeList[i - 1], isShow2)">{{ lifeList[i - 1].main }}</p>
+            <input class="delete" value="削除" @click="deleteQuestion(lifeList[i - 1])" type="send" v-if="isShow2">
           </div>
         </div>
         <div id="senior_container" class="question">
@@ -28,9 +28,9 @@
             <h1 class="question_title1">先輩</h1>
             <h2 class="question_title2">について</h2>
           </div>
-          <div class="topic_container" v-for="item in seniorList" :key="item.id">
-            <p class="topic_content" @click="selectQuestion(item)">{{ item.main }}</p>
-            <input class="delete" value="削除" @click="deleteQuestion(item)">
+          <div class="topic_container" v-for="i in seniorList.length" :key="i">
+            <p class="topic_content" @click="selectQuestion(seniorList[i - 1], isShow3)">{{ seniorList[i - 1].main }}</p>
+            <input class="delete" value="削除" @click="deleteQuestion(seniorList[i - 1])" type="send" v-if="isShow3">
           </div>
         </div>
       </div>
@@ -56,7 +56,7 @@
             <h2 class="form_title">執筆者</h2>
             <input type="text" class="input1" v-model="author">
           </div> 
-          <input class="send" value="送信する" @click="send()">
+          <input class="send" value="送信する" @click="send()" type="send">
         </form>
       </div>
     </div>
@@ -81,7 +81,10 @@ export default {
       main: '',
       youtube_link: '',
       author: '',
-      pass: this.$router.pass
+      pass: this.$router.pass,
+      isShow1: false,
+      isShow2: false,
+      isShow3: false
     }
   },
   created: function(){
@@ -91,27 +94,63 @@ export default {
     getPost: function(){
       this.axios.get('https://kzkymur.com/api/question/')
       .then(response => {
+        let study_list = [];
+        let life_list = [];
+        let senior_list = [];
+
+        let study_count = 0;
+        let life_count = 0;
+        let senior_count = 0;
+
         for (let i = 0; i < response.data.question.length; i++) {
-          
+  
           if (response.data.question[i].category == '大学') {
-            
-            this.studyList.push(response.data.question[i]);
+
+            study_count = study_count + 1;
+            study_list.push(response.data.question[i]);
+            this.studyList = study_list;
           } else if (response.data.question[i].category == '生活') {
 
-            this.lifeList.push(response.data.question[i]);
+            life_count = life_count + 1;
+            life_list.push(response.data.question[i]);
+            this.lifeList = life_list;
           } else if (response.data.question[i].category == '先輩'){
 
-            this.seniorList.push(response.data.question[i]);
+            senior_count = senior_count + 1;
+            senior_list.push(response.data.question[i]);
+            this.seniorList = senior_list;
           }
+        }
+      
+        if (study_count == 0) {
+          this.isShow1 = false;
+          this.studyList = [{main: '質問はありません'}]
+        } else {
+          this.isShow1 = true;
+        }
+        if (life_count == 0) {
+          this.isShow2 = false;
+          this.lifeList = [{main: '質問はありません'}]
+        } else {
+          this.isShow2 = true;
+        }
+        if (senior_count == 0) {
+          this.isShow3 = false;
+          this.seniorList = [{main: '質問はありません'}]
+        } else {
+          this.isShow3 = true;
         }
       })
       .catch(error => {
         window.alert(error);
       });
     },
-    selectQuestion: function(question){
-      this.title = question.main;
-      this.category = question.category;
+    selectQuestion: function(question, isShow){
+
+      if (isShow) {
+        this.title = question.main;
+        this.category = question.category;
+      } 
     },
     deleteQuestion: function(question){
       let generator = confirm('本当に削除しますか？');
@@ -124,8 +163,7 @@ export default {
         this.axios.post('https://kzkymur.com/api/manage_question/', params)
         .then(() => {
           window.alert('正しく削除できました！😁');
-          this.$router.isPass = true;
-          this.$router.go({path: this.$router.currentRoute.path, force: true});
+          this.getPost();
         })
         .catch(error => {
           window.alert(error);
@@ -160,6 +198,7 @@ export default {
             this.main = '';
             this.youtube_link = '';
             this.author = '';
+            this.getPost();
           })
           .catch(error => {
             window.alert(error);
