@@ -229,6 +229,7 @@ export default {
   font-size: 20px;
   font-weight: 1000;
   text-align: left;
+  margin-top: 20px;
 }
 p {
   cursor: pointer;
@@ -249,7 +250,6 @@ p {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   padding: 5px 0;
-  margin-bottom: 10px;
   cursor: pointer;
   transition: 500ms;
   text-align: center;
