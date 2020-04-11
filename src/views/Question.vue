@@ -340,7 +340,7 @@ form {
   resize: none;
 }
 .send {
-  width: 40%;
+  width: 31%;
   min-width: 150px;
   color: white;
   font-size: 20px;
