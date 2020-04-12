@@ -143,7 +143,6 @@ form {
 	position: absolute;
 	z-index: 1;
 	top: 0.1rem;
-	left: 0.1875rem;
 	width: 0.75rem;
 	height: 0.375rem;
 	content: '';
