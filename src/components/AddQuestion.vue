@@ -136,13 +136,14 @@ form {
 .item_container .check {
 	position: relative;
   top: -1px;
-	margin: 0 1rem 0 0;
+	margin: 0 2rem 0 0;
 	cursor: pointer;
 }
 .item_container .check:before {
 	position: absolute;
 	z-index: 1;
 	top: 0.1rem;
+	left: 0.1875rem;
 	width: 0.75rem;
 	height: 0.375rem;
 	content: '';
