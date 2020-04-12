@@ -126,7 +126,6 @@ form {
   resize: none;
 }
 #category_container {
-  -webkit-appearance: none;
   display: flex;
   justify-content: space-between;
   margin: 0;
@@ -134,9 +133,10 @@ form {
   margin: 0 auto;
 }
 .item_container .check {
+  -webkit-appearance: none;
 	position: relative;
   top: -1px;
-	margin: 0 2rem 0 0;
+	margin: 0 1rem 0 0;
 	cursor: pointer;
 }
 .item_container .check:before {
