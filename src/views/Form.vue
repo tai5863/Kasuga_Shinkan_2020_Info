@@ -8,16 +8,21 @@
             <h2 class="form_title">トピック</h2>
             <input type="text" class="input1" id="topic" placeholder="例 : 履修はいつから？" v-model="title">
           </div>
-          <div class="item_container">
+          <div class="item_container" id="category_container">
             <h2 class="form_title">項目</h2>
-            <input type="text" class="input1" id="category" placeholder="大学・生活・先輩・editのいづれか" v-model="category"> 
+            <form id="checkbox_container">
+              <div v-for="category in categoryList" :key="category.key">
+                <input class="check" type="radio" name="category" :id="category" :value="category" @click="judge()">
+                <p class="category" @click="checkControl(category), judge()">{{ category }}</p>
+              </div>
+            </form>
           </div>
           <div class="item_container">
             <h2 class="form_title">内容</h2>
             <textarea class="input2" placeholder="例 : 16日からです！11日に時間割が出るので、少なくともそれまでは何もしなくてもOK！
 
-※トピックを削除したい場合は項目にedit, 内容にdeleteを入力してください。
-※すでにあるトピックの内容を編集したい場合は項目にeditを入力してください。" v-model="main"></textarea>
+※トピックを削除したい場合はeditを選択し, 内容にdeleteを入力してください。
+※すでにあるトピックの内容を編集したい場合はeditを選択しててください。" v-model="main"></textarea>
           </div> 
           <div class="item_container">
             <h2 class="form_title">YouTubeの時間指定付きリンク</h2>
@@ -52,17 +57,27 @@ export default {
       eCategory: '',
       pass: this.$router.pass,
       trueTitle: '',
-      trueAuther: ''
+      trueAuther: '',
+      categoryList: ['大学', '生活', '先輩', 'edit']
     }
   },
   mounted: function(){
-    this.eCategory = document.getElementById('category');
-    this.eCategory.addEventListener('blur', this.searchTitle);
-    this.eTopic = document.getElementById('topic');
-    this.eTopic.addEventListener('blur', this.judge);
+    let eTopic = document.getElementById('topic');
+    eTopic.addEventListener('blur', this.judge);
   },
   methods: {
+    checkControl: function(id){
+      let checkbox = document.getElementById(id);
+      checkbox.checked = !checkbox.checked;
+    },
+    setCategory: function(){
+      let container = document.getElementById('checkbox_container');
+      let radioNodeList = container.category;
+      let value = radioNodeList.value;
+      this.category = value;
+    },
     judge: function(){
+      this.setCategory();
       if (this.category == 'edit') {
         this.searchTitle();
       } 
@@ -79,11 +94,7 @@ export default {
         .catch(() => {
           window.alert('このトピックは存在しません😓');
         });
-      } else if (this.category != '大学' && this.category != '生活' && this.category != '先輩' && this.category != 'edit') {
-        window.alert('項目は大学・生活・先輩・editのいづれかです！');
-        this.category = '';
-        return;
-      }
+      } 
     },
     send: function(){
       if (this.category == 'edit') {
@@ -95,9 +106,6 @@ export default {
       }
       if (this.title == '' || this.category == '' || this.main == '' || this.author == '') {
         window.alert('トピック・項目・内容・執筆者は必須項目です！');
-        return;
-      } else if (this.category != '大学' && this.category != '生活' && this.category != '先輩' && this.category != 'edit') {
-        window.alert('項目は大学・生活・先輩のいづれかです！');
         return;
       } else {
         let generator = confirm('この内容で投稿しますか？');
@@ -118,7 +126,6 @@ export default {
             this.main = '';
             this.youtube_link = '';
             this.author = '';
-            this.getPost();
           })
           .catch(error => {
             window.alert(error);
@@ -136,6 +143,14 @@ export default {
 .header >>> #form_on{
   color: rgba(255, 255, 255, 1.0);
 }
+
+@media screen and (min-width: 480px){
+  #category_container {
+    width: calc(85% + 12px);
+    max-width: 1012px;
+  }
+}
+
 @media screen and (max-width: 820px){
   #container {
     margin-left: 50px;
@@ -166,6 +181,58 @@ form {
 .form_title {
   margin-top: 30px;
   margin-bottom: 15px;
+}
+.item_container .check {
+	position: relative;
+  top: -1px;
+	margin: 0 1rem 0 0;
+	cursor: pointer;
+}
+.item_container .check:before {
+	position: absolute;
+	z-index: 1;
+	top: 0.1rem;
+	left: 0.1875rem;
+	width: 0.75rem;
+	height: 0.375rem;
+	content: '';
+	-webkit-transition: -webkit-transform 0.4s cubic-bezier(0.45, 1.8, 0.5, 0.75);
+	transition: transform 0.4s cubic-bezier(0.45, 1.8, 0.5, 0.75);
+	-webkit-transform: rotate(-45deg) scale(0, 0);
+	transform: rotate(-45deg) scale(0, 0);
+	border: 2px solid orange;
+	border-top-style: none;
+	border-right-style: none;
+}
+.item_container .check:checked:before {
+	-webkit-transform: rotate(-45deg) scale(1, 1);
+	transform: rotate(-45deg) scale(1, 1);
+}
+.item_container .check:after {
+	position: absolute;
+	top: -0.125rem;
+	left: 0;
+	width: 1rem;
+	height: 1rem;
+	content: '';
+	cursor: pointer;
+	border: 2px solid rgb(75, 75, 75);
+	background: #ffffff;
+}
+#checkbox_container {
+  width: calc(80% + 12px);
+  max-width: 650px;
+  display: flex;
+  justify-content: space-between;
+  margin: 0 auto;
+}
+#checkbox_container p {
+  cursor: pointer;
+  display: inline;
+  padding: 0;
+  font-size: 20px;
+  font-weight: 1000;
+  margin: 0;
 }
 .input1 {
   width: calc(80% + 12px);

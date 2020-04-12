@@ -8,7 +8,7 @@
             <h2 class="form_title">パスワードを入力してください</h2>
             <input type="password" class="input1" v-model="pass" @keyup.enter="send()">
           </div>
-          <input class="send" value="送信する" @click="send()">
+          <input class="send" value="送信する" @click="send()" type="submit">
         </form>
       </div>
     </div>
