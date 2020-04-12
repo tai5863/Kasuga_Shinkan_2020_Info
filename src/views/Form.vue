@@ -21,8 +21,10 @@
             <h2 class="form_title">内容</h2>
             <textarea class="input2" placeholder="例 : 16日からです！11日に時間割が出るので、少なくともそれまでは何もしなくてもOK！
 
-※トピックを削除したい場合はeditを選択し, 内容にdeleteを入力してください。
-※すでにあるトピックの内容を編集したい場合はeditを選択しててください。" v-model="main"></textarea>
+※トピック・項目・内容・執筆者は必須項目です。
+※すでにあるトピックを編集または削除したい場合は該当するトピックを入力しeditを選択してください。
+※削除したい場合はもとの内容を削除しdeleteを入力してください。
+※編集・削除いずれの場合も執筆者が一致している必要があります。" v-model="main"></textarea>
           </div> 
           <div class="item_container">
             <h2 class="form_title">YouTubeの時間指定付きリンク</h2>
@@ -79,22 +81,24 @@ export default {
     judge: function(){
       this.setCategory();
       if (this.category == 'edit') {
-        this.searchTitle();
+        if (this.title != '') {
+          this.searchTitle();
+        } else {
+          window.alert('トピックを入力してください💦');
+        }
       } 
     },
     searchTitle: function(){
-      if (this.category == 'edit') {
-        let params = new URLSearchParams();
-        params.append('title', this.title);
-        this.axios.post('https://kzkymur.com/api/topic/', params)
-        .then(response => {
-          this.main = response.data.topic.main;
-          this.trueAuther = response.data.topic.author;
-        })
-        .catch(() => {
-          window.alert('このトピックは存在しません😓');
-        });
-      } 
+      let params = new URLSearchParams();
+      params.append('title', this.title);
+      this.axios.post('https://kzkymur.com/api/topic/', params)
+      .then(response => {
+        this.main = response.data.topic.main;
+        this.trueAuther = response.data.topic.author;
+      })
+      .catch(() => {
+        window.alert('このトピックは存在しません😓');
+      });
     },
     send: function(){
       if (this.category == 'edit') {
