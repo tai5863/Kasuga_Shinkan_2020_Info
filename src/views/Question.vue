@@ -318,6 +318,7 @@ export default {
 .topic_container .check {
 	position: relative;
   top: -1px;
+  left: -1px;
 	margin: 0 1rem 0 0;
 	cursor: pointer;
 }
@@ -396,6 +397,7 @@ p {
 .item_container .check {
 	position: relative;
   top: -1px;
+  left: -1px;
 	margin: 0 1rem 0 0;
 	cursor: pointer;
 }

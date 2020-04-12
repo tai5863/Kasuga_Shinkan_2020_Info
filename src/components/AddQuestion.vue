@@ -133,9 +133,9 @@ form {
   margin: 0 auto;
 }
 .item_container .check {
-  -webkit-appearance: none;
 	position: relative;
   top: -1px;
+  left: -1px;
 	margin: 0 1rem 0 0;
 	cursor: pointer;
 }
