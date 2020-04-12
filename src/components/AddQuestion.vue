@@ -126,6 +126,7 @@ form {
   resize: none;
 }
 #category_container {
+  -webkit-appearance: none;
   display: flex;
   justify-content: space-between;
   margin: 0;

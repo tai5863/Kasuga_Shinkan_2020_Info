@@ -38,11 +38,11 @@
       <div id="form_container">
         <form>
           <div class="item_container">
-            <h2 class="form_title">トピック</h2>
+            <h2 class="form_title">見出し</h2>
             <input type="text" class="input1" placeholder="例 : 履修はいつから？" v-model="title">
           </div>
           <div class="item_container" id="category_container">
-            <h2 class="form_title">項目</h2>
+            <h2 class="form_title">分類</h2>
             <form id="checkbox_container">
               <div v-for="category in categoryList" :key="category.key">
                 <input class="check" type="radio" name="category" :id="category" :value="category">
@@ -202,10 +202,10 @@ export default {
     send: function(){
       this.setCategory();
       if (this.title == '' || this.category == '' || this.main == '' || this.author == '') {
-        window.alert('トピック・項目・内容・執筆者は必須項目です！');
+        window.alert('見出し・分類・本文・執筆者は必須項目です！');
         return;
       } else if (this.category != '大学' && this.category != '生活' && this.category != '先輩') {
-        window.alert('項目は大学・生活・先輩のいづれかです！');
+        window.alert('分類は大学・生活・先輩のいづれかです！');
         return;
       } else {
         let generator = confirm('この内容で投稿しますか？');
@@ -309,6 +309,7 @@ export default {
   font-size: 30px;
 }
 .topic_container {
+  -webkit-appearance: none;
   font-size: 20px;
   font-weight: 1000;
   text-align: left;
@@ -430,6 +431,7 @@ p {
 	background: #ffffff;
 }
 #checkbox_container {
+  -webkit-appearance: none;
   width: calc(80% + 12px);
   max-width: 650px;
   display: flex;

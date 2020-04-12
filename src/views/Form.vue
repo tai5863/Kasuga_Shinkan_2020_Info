@@ -2,14 +2,22 @@
   <div id="form">
     <Header1 class="header"></Header1>
     <div id="container">
+      <div id="explain_container">
+        <li>見出し・項目・本文・執筆者は必須項目です。</li>
+        <li>すでにある見出しを編集または削除したい場合は該当する見出しを入力しeditを選択してください。</li>
+        <li>削除したい場合はもとの本文を削除しdeleteを入力してください。</li>
+        <li>編集・削除いずれの場合も執筆者が一致している必要があります。</li>
+        <li>配信の中で取り上げている内容の場合、そのリンクをYouTubeの時間指定付きリンクに貼ってください。</li>
+        <li>執筆者はフルネームで入力してください。</li>
+      </div>
       <div id="form_container">
         <form>
           <div class="item_container">
-            <h2 class="form_title">トピック</h2>
-            <input type="text" class="input1" id="topic" placeholder="例 : 履修はいつから？" v-model="title">
+            <h2 class="form_title">見出し</h2>
+            <input type="text" class="input1" id="topic" placeholder="例：履修登録はいつから？" v-model="title">
           </div>
           <div class="item_container" id="category_container">
-            <h2 class="form_title">項目</h2>
+            <h2 class="form_title">分類</h2>
             <form id="checkbox_container">
               <div v-for="category in categoryList" :key="category.key">
                 <input class="check" type="radio" name="category" :id="category" :value="category" @click="judge()">
@@ -18,13 +26,8 @@
             </form>
           </div>
           <div class="item_container">
-            <h2 class="form_title">内容</h2>
-            <textarea class="input2" placeholder="例 : 16日からです！11日に時間割が出るので、少なくともそれまでは何もしなくてもOK！
-
-※トピック・項目・内容・執筆者は必須項目です。
-※すでにあるトピックを編集または削除したい場合は該当するトピックを入力しeditを選択してください。
-※削除したい場合はもとの内容を削除しdeleteを入力してください。
-※編集・削除いずれの場合も執筆者が一致している必要があります。" v-model="main"></textarea>
+            <h2 class="form_title">本文</h2>
+            <textarea class="input2" placeholder="例 : 16日からです！11日に時間割が出るので、少なくともそれまでは何もしなくてもOK！" v-model="main"></textarea>
           </div> 
           <div class="item_container">
             <h2 class="form_title">YouTubeの時間指定付きリンク</h2>
@@ -84,7 +87,7 @@ export default {
         if (this.title != '') {
           this.searchTitle();
         } else {
-          window.alert('トピックを入力してください💦');
+          window.alert('見出しを入力してください💦');
         }
       } 
     },
@@ -97,7 +100,7 @@ export default {
         this.trueAuther = response.data.topic.author;
       })
       .catch(() => {
-        window.alert('このトピックは存在しません😓');
+        window.alert('この見出しは存在しません😓');
       });
     },
     send: function(){
@@ -109,7 +112,7 @@ export default {
         }
       }
       if (this.title == '' || this.category == '' || this.main == '' || this.author == '') {
-        window.alert('トピック・項目・内容・執筆者は必須項目です！');
+        window.alert('見出し・分類・本文・執筆者は必須項目です！');
         return;
       } else {
         let generator = confirm('この内容で投稿しますか？');
@@ -148,9 +151,38 @@ export default {
   color: rgba(255, 255, 255, 1.0);
 }
 
-@media screen and (min-width: 480px){
+@media screen and (max-width: 570px){
+  li {
+    margin-top: 50px;
+  }
+  #category_container {
+    width: 100%;
+    max-width: 1012px;
+    margin: 0 auto;
+  }
+  #checkbox_container {
+    margin: 0 auto;
+  }
+}
+
+@media screen and (min-width: 571px){
+  li {
+    margin-top: 30px;
+  }
   #category_container {
     width: calc(85% + 12px);
+    max-width: 1012px;
+  }
+  #checkbox_container {
+    display: flex;
+    justify-content: space-between;
+    margin: 0 auto;
+  }
+}
+
+@media screen and (max-width: 720px){
+  #category_container {
+    width: 100%;
     max-width: 1012px;
   }
 }
@@ -161,6 +193,13 @@ export default {
     margin-right: 50px;
     text-align: center;
   }
+  #explain_container {
+    margin-right: 5%;
+    margin-left: 5%;
+  }
+  #category_container {
+    margin: 0 auto;
+  }
 }
 
 @media screen and (min-width: 821px){
@@ -169,8 +208,18 @@ export default {
     margin-left: 15%;
     margin-right: 15%;
   }
+  #explain_container {
+    margin-right: 10%;
+    margin-left: 10%;
+  }
 }
 
+#explain_container {
+  font-size: 17px;
+  font-weight: 1000;
+  text-align: left;
+  margin-top: 100px;
+}
 .form_title_container {
   border-bottom: solid 10px orange;
   display: inline-block;
@@ -224,11 +273,9 @@ form {
 	background: #ffffff;
 }
 #checkbox_container {
-  width: calc(80% + 12px);
-  max-width: 650px;
-  display: flex;
-  justify-content: space-between;
-  margin: 0 auto;
+  -webkit-appearance: none;
+  width: calc(70% + 12px);
+  max-width: 700px;
 }
 #checkbox_container p {
   cursor: pointer;
