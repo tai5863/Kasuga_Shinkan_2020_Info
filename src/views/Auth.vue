@@ -42,7 +42,6 @@ export default {
           this.$router.push('/Authentication_for_committee_member/form');
         } else {
           window.alert('パスワードが正しくありません！');
-          return;
         }
       })
       .catch(error => {
