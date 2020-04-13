@@ -138,6 +138,8 @@ export default {
             .catch(error => {
               window.alert(error);
             });
+          } else {
+            return;
           }
         } else {
           let generator = confirm('この内容で投稿しますか？');
