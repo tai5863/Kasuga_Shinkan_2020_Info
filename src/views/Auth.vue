@@ -6,9 +6,9 @@
         <form>
           <div class="item_container">
             <h2 class="form_title">パスワードを入力してください</h2>
-            <input type="password" class="input1" v-model="pass" @keyup.enter="send()">
+            <input type="password" class="input1" v-model="pass" @keyup.enter="next()">
           </div>
-          <input class="send" value="送信する" @click="send()" type="submit">
+          <input class="send" value="送信する" @click="next()" type="submit">
         </form>
       </div>
     </div>
@@ -19,7 +19,7 @@
 import Header1 from '@/components/Header1.vue'
 
 export default {
-  name: 'Form',
+  name: 'Auth',
   components: {
     Header1
   },
@@ -29,7 +29,7 @@ export default {
     }
   },
   methods: {
-    send: function(){
+    next: function(){
       let params = new URLSearchParams();
       params.append('password', this.pass);
       this.axios.post('https://kzkymur.com/api/password/', params)
@@ -37,8 +37,8 @@ export default {
         this.pass = '';
         this.$router.isPass = response.data.result;
         if (this.$router.isPass) {
-          this.$router.pass = response.data.key;
           window.alert('正しく認証できました！');
+          this.$router.pass = response.data.key;
           this.$router.push('/Authentication_for_committee_member/form');
         } else {
           window.alert('パスワードが正しくありません！');

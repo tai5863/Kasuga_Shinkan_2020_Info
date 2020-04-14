@@ -9,7 +9,7 @@
     </router-link>
     <nav class="nav_for_sections">
       <ul class="header_ul">
-        <li v-for="section in sections" :key="section.id"><router-link :to="'/authentication_for_committee_member/' + section.class_name" :id="section.class_name + '_on'">{{ section.title }}</router-link></li>
+        <li v-for="section in sections" :key="section.id"><router-link :to="'/Authentication_for_committee_member/' + section.class_name" :id="section.class_name + '_on'">{{ section.title }}</router-link></li>
       </ul>
     </nav>
   </div>
