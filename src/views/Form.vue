@@ -165,6 +165,46 @@ export default {
   color: rgba(255, 255, 255, 1.0);
 }
 
+@media screen and (min-width: 481px){
+  .item_container .check {
+    position: relative;
+    top: -1px;
+    margin: 0 1rem 0 0;
+    cursor: pointer;
+  }
+  .item_container .check:before {
+    position: absolute;
+    z-index: 1;
+    top: 0.1rem;
+    left: 0.1875rem;
+    width: 0.75rem;
+    height: 0.375rem;
+    content: '';
+    -webkit-transition: -webkit-transform 0.4s cubic-bezier(0.45, 1.8, 0.5, 0.75);
+    transition: transform 0.4s cubic-bezier(0.45, 1.8, 0.5, 0.75);
+    -webkit-transform: rotate(-45deg) scale(0, 0);
+    transform: rotate(-45deg) scale(0, 0);
+    border: 2px solid orange;
+    border-top-style: none;
+    border-right-style: none;
+  }
+  .item_container .check:checked:before {
+    -webkit-transform: rotate(-45deg) scale(1, 1);
+    transform: rotate(-45deg) scale(1, 1);
+  }
+  .item_container .check:after {
+    position: absolute;
+    top: -0.125rem;
+    left: 0;
+    width: 1rem;
+    height: 1rem;
+    content: '';
+    cursor: pointer;
+    border: 2px solid rgb(75, 75, 75);
+    background: #ffffff;
+  }
+}
+
 @media screen and (max-width: 570px){
   #container {
     margin: 0;
@@ -251,43 +291,6 @@ form {
 .form_title {
   margin-top: 30px;
   margin-bottom: 15px;
-}
-.item_container .check {
-	position: relative;
-  top: -1px;
-	margin: 0 1rem 0 0;
-	cursor: pointer;
-}
-.item_container .check:before {
-	position: absolute;
-	z-index: 1;
-	top: 0.1rem;
-	left: 0.1875rem;
-	width: 0.75rem;
-	height: 0.375rem;
-	content: '';
-	-webkit-transition: -webkit-transform 0.4s cubic-bezier(0.45, 1.8, 0.5, 0.75);
-	transition: transform 0.4s cubic-bezier(0.45, 1.8, 0.5, 0.75);
-	-webkit-transform: rotate(-45deg) scale(0, 0);
-	transform: rotate(-45deg) scale(0, 0);
-	border: 2px solid orange;
-	border-top-style: none;
-	border-right-style: none;
-}
-.item_container .check:checked:before {
-	-webkit-transform: rotate(-45deg) scale(0.75, 0.75);
-	transform: rotate(-45deg) scale(0.75, 0.75);
-}
-.item_container .check:after {
-	position: absolute;
-	top: -0.125rem;
-	left: 0;
-	width: 1rem;
-	height: 1rem;
-	content: '';
-	cursor: pointer;
-	border: 2px solid rgb(75, 75, 75);
-	background: #ffffff;
 }
 #checkbox_container {
   -webkit-appearance: none;
