@@ -115,58 +115,39 @@ export default {
         window.alert('見出し・分類・本文・執筆者は必須項目です！');
         return;
       } else {
+        let generator;
         if (this.main == 'delete') {
-          let generator = confirm('本当に削除しますか？');
-          if (generator == true) {
-            let params = new URLSearchParams();
-            params.append('serial_num', 0);
-            params.append('title', this.title);
-            params.append('category', this.category);
-            params.append('main', this.main);
-            params.append('youtube_link', this.youtube_link);
-            params.append('author', this.author);
-            params.append('key', this.pass);
-            this.axios.post('https://kzkymur.com/api/manage_topic/', params)
-            .then(() => {
-              window.alert('正しく削除できました！🎉');
-              this.title = '';
-              this.category = '';
-              this.main = '';
-              this.youtube_link = '';
-              this.author = '';
-            })
-            .catch(error => {
-              window.alert(error);
-            });
-          } else {
-            return;
-          }
+          generator = confirm('本当に削除しますか？');
         } else {
-          let generator = confirm('この内容で投稿しますか？');
-          if (generator == true) {
-            let params = new URLSearchParams();
-            params.append('serial_num', 0);
-            params.append('title', this.title);
-            params.append('category', this.category);
-            params.append('main', this.main);
-            params.append('youtube_link', this.youtube_link);
-            params.append('author', this.author);
-            params.append('key', this.pass);
-            this.axios.post('https://kzkymur.com/api/manage_topic/', params)
-            .then(() => {
+          generator = confirm('この内容で投稿しますか？');
+        }
+        if (generator) {
+          let params = new URLSearchParams();
+          params.append('serial_num', 0);
+          params.append('title', this.title);
+          params.append('category', this.category);
+          params.append('main', this.main);
+          params.append('youtube_link', this.youtube_link);
+          params.append('author', this.author);
+          params.append('key', this.pass);
+          this.axios.post('https://kzkymur.com/api/manage_topic/', params)
+          .then(() => {
+            if (this.main == 'deletel') {
+              window.alert('正しく削除できました！🎉');
+            } else {
               window.alert('正しく投稿できました！🎉');
-              this.title = '';
-              this.category = '';
-              this.main = '';
-              this.youtube_link = '';
-              this.author = '';
-            })
-            .catch(error => {
-              window.alert(error);
-            });
-          } else {
-            return;
-          }
+            }
+            this.title = '';
+            this.category = '';
+            this.main = '';
+            this.youtube_link = '';
+            this.author = '';
+          })
+          .catch(error => {
+            window.alert(error);
+          });
+        } else {
+          return;
         }
       }
     }
