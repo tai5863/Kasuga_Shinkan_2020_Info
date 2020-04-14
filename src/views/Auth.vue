@@ -37,8 +37,8 @@ export default {
         this.pass = '';
         this.$router.isPass = response.data.result;
         if (this.$router.isPass) {
-          window.alert('正しく認証できました！');
           this.$router.pass = response.data.key;
+          window.alert('正しく認証できました！');
           this.$router.push('/Authentication_for_committee_member/form');
         } else {
           window.alert('パスワードが正しくありません！');
