@@ -344,8 +344,8 @@ export default {
 	border-right-style: none;
 }
 .topic_container .check:checked:before {
-	-webkit-transform: rotate(-45deg) scale(1, 1);
-	transform: rotate(-45deg) scale(1, 1);
+	-webkit-transform: rotate(-45deg) scale(0.75, 0.75);
+	transform: rotate(-45deg) scale(0.75, 0.75);
 }
 .topic_container .check:after {
 	position: absolute;
@@ -422,8 +422,8 @@ p {
 	border-right-style: none;
 }
 .item_container .check:checked:before {
-	-webkit-transform: rotate(-45deg) scale(1, 1);
-	transform: rotate(-45deg) scale(1, 1);
+	-webkit-transform: rotate(-45deg) scale(0.75, 0.75);
+	transform: rotate(-45deg) scale(0.75, 0.75);
 }
 .item_container .check:after {
 	position: absolute;
