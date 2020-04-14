@@ -73,7 +73,12 @@ export default {
   methods: {
     checkControl: function(id){
       let checkbox = document.getElementById(id);
-      checkbox.checked = !checkbox.checked;
+      let container = document.getElementById('category_container');
+      let radioNodeList = container.category;
+      let value = radioNodeList.value;
+      if (value == '' || value != checkbox.value) {
+        checkbox.checked = !checkbox.checked;
+      }
     },
     setCategory: function(){
       let container = document.getElementById('checkbox_container');

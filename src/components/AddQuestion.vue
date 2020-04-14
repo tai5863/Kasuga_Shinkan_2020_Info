@@ -36,7 +36,12 @@ export default {
   methods: {
     checkControl: function(id){
       let checkbox = document.getElementById(id);
-      checkbox.checked = !checkbox.checked;
+      let container = document.getElementById('category_container');
+      let radioNodeList = container.category;
+      let value = radioNodeList.value;
+      if (value == '' || value != checkbox.value) {
+        checkbox.checked = !checkbox.checked;
+      }
     },
     setCategory: function(){
       let container = document.getElementById('category_container');
@@ -133,14 +138,12 @@ form {
   margin: 0 auto;
 }
 .item_container .check {
-  -webkit-appearance: none;
 	position: relative;
   top: -1px;
 	margin: 0 1rem 0 0;
 	cursor: pointer;
 }
 .item_container .check:before {
-  -webkit-appearance: none;
 	position: absolute;
 	z-index: 1;
 	top: 0.1rem;
@@ -157,12 +160,10 @@ form {
 	border-right-style: none;
 }
 .item_container .check:checked:before {
-  -webkit-appearance: none;
 	-webkit-transform: rotate(-45deg) scale(1, 1);
 	transform: rotate(-45deg) scale(1, 1);
 }
 .item_container .check:after {
-  -webkit-appearance: none;
 	position: absolute;
 	top: -0.125rem;
 	left: 0;
