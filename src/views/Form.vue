@@ -132,7 +132,7 @@ export default {
           params.append('key', this.pass);
           this.axios.post('https://kzkymur.com/api/manage_topic/', params)
           .then(() => {
-            if (this.main == 'deletel') {
+            if (this.main == 'delete') {
               window.alert('正しく削除できました！🎉');
             } else {
               window.alert('正しく投稿できました！🎉');
