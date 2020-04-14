@@ -49,7 +49,7 @@ li {
   display: inline;
 }
 .pre2 {
-  font-size: 25px;
+  font-size: 22px;
   font-weight: 1000;
   font-family: "游ゴシック", "Yu Gothic", "游ゴシック体", YuGothic, sans-serif;
   display: inline;
