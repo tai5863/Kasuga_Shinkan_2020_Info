@@ -140,6 +140,7 @@ form {
 	cursor: pointer;
 }
 .item_container .check:before {
+  -webkit-appearance: none;
 	position: absolute;
 	z-index: 1;
 	top: 0.1rem;
@@ -156,10 +157,12 @@ form {
 	border-right-style: none;
 }
 .item_container .check:checked:before {
+  -webkit-appearance: none;
 	-webkit-transform: rotate(-45deg) scale(1, 1);
 	transform: rotate(-45deg) scale(1, 1);
 }
 .item_container .check:after {
+  -webkit-appearance: none;
 	position: absolute;
 	top: -0.125rem;
 	left: 0;
