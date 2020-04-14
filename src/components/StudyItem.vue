@@ -1,14 +1,14 @@
 <template>
   <div id="study_item">
     <div id="item_container">
-      <div class="topic_container" v-for="item in itemList" :key="item.id">
-        <label :for="item.id">
+      <div class="topic_container" v-for="item in itemList" :key="item.title">
+        <label :for="item.title">
           <h2 class="topic">{{ item.title }}</h2>
         </label>
-        <input type="checkbox" :id="item.id"/>
+        <input type="checkbox" :id="item.title"/>
         <div class="hidden_show">
           <p class="topic_content">{{ item.main }}</p>
-          <div class="iframe_container">
+          <div class="iframe_container" v-if="item.isYouTube">
             <iframe v-if="item.isYouTube" :src="item.youtube_link" frameborder="0" autoplay="0" allow="accelerometer; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
           </div>
         </div>
@@ -90,8 +90,8 @@ export default {
   }
   .iframe_container {
     display: inline;
-    margin-left: 5%;
-    margin-right: 5%;
+    margin-left: 10%;
+    margin-right: 10%;
   }
   .topic_container input:checked ~ .hidden_show iframe{
     width: calc(25vw + 150px); 
@@ -105,7 +105,6 @@ export default {
 .topic_content {
   margin-top: 15px;
   font-weight: 1000;
-  position: relative;
 }
 .topic_container input {
   display: none;

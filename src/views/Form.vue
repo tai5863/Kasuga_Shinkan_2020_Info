@@ -20,7 +20,7 @@
             <h2 class="form_title">分類</h2>
             <form id="checkbox_container">
               <div v-for="category in categoryList" :key="category.key">
-                <input class="check" type="radio" name="category" :id="category" :value="category" @click="judge()">
+                <input class="check" type="radio" name="category" :id="category" :value="category" @click="judgeEdit()">
                 <p class="category" @click="checkControl(category), judge()">{{ category }}</p>
               </div>
             </form>
@@ -59,7 +59,6 @@ export default {
       main: '',
       youtube_link: '',
       author: '',
-      eCategory: '',
       pass: this.$router.pass,
       trueTitle: '',
       trueAuther: '',
@@ -73,7 +72,7 @@ export default {
   methods: {
     checkControl: function(id){
       let checkbox = document.getElementById(id);
-      let container = document.getElementById('category_container');
+      let container = document.getElementById('checkbox_container');
       let radioNodeList = container.category;
       let value = radioNodeList.value;
       if (value == '' || value != checkbox.value) {
@@ -86,7 +85,7 @@ export default {
       let value = radioNodeList.value;
       this.category = value;
     },
-    judge: function(){
+    judgeEdit: function(){
       this.setCategory();
       if (this.category == 'edit') {
         if (this.title != '') {
@@ -206,12 +205,7 @@ export default {
 }
 
 @media screen and (max-width: 570px){
-  #container {
-    margin: 0;
-  }
-  li {
-    margin-top: 50px;
-  }
+  
   #category_container {
     width: 100%;
     max-width: 1012px;
@@ -223,9 +217,6 @@ export default {
 }
 
 @media screen and (min-width: 571px){
-  li {
-    margin-top: 30px;
-  }
   #category_container {
     width: calc(85% + 12px);
     max-width: 1012px;
@@ -251,8 +242,8 @@ export default {
     text-align: center;
   }
   #explain_container {
-    margin-right: 5%;
-    margin-left: 5%;
+    margin-right: 8.5%;
+    margin-left: 8.5%;
   }
   #category_container {
     margin: 0 auto;
@@ -265,10 +256,6 @@ export default {
     margin-left: 15%;
     margin-right: 15%;
   }
-  #explain_container {
-    margin-right: 10%;
-    margin-left: 10%;
-  }
 }
 
 #explain_container {
@@ -277,19 +264,14 @@ export default {
   text-align: left;
   margin-top: 100px;
 }
-.form_title_container {
-  border-bottom: solid 10px orange;
-  display: inline-block;
-  line-height: 1;
-  margin-top: 50px;
-  width: 200px;
-  margin-bottom: 10px;
+li {
+  margin-top: 40px;
 }
 form {
-  margin-top: 100px;
+  margin-top: 80px;
 }
 .form_title {
-  margin-top: 30px;
+  margin-top: 40px;
   margin-bottom: 15px;
 }
 #checkbox_container {

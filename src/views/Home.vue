@@ -22,6 +22,7 @@
         <router-link to="/life"><ItemButton02 class="item_button"></ItemButton02></router-link>
         <router-link to="/senior"><ItemButton03 class="item_button"></ItemButton03></router-link>
       </div>
+      <YouTubeLive></YouTubeLive>
       <AddQuestion></AddQuestion>
     </div>
   </div>
@@ -32,6 +33,7 @@ import Header from '@/components/Header.vue'
 import ItemButton01 from '@/components/ItemButton01.vue'
 import ItemButton02 from '@/components/ItemButton02.vue'
 import ItemButton03 from '@/components/ItemButton03.vue'
+import YouTubeLive from '@/components/YouTubeLive.vue'
 import AddQuestion from '@/components/AddQuestion.vue'
 
 export default {
@@ -41,6 +43,7 @@ export default {
     ItemButton01,
     ItemButton02,
     ItemButton03,
+    YouTubeLive,
     AddQuestion
   },
   created: function(){
@@ -62,7 +65,6 @@ export default {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-
 #twitter {
     color: rgba(0.0, 0.0, 0.0, 1.0);
     text-decoration: underline;
@@ -78,6 +80,7 @@ export default {
   }
   .about_title_container {
     border-bottom: solid 10px orange;
+    padding-bottom: 5px;
     display: inline-block;
     line-height: 1;
     margin-top: 50px;
@@ -121,6 +124,7 @@ export default {
   }
   .about_title_container {
     border-bottom: solid 10px orange;
+    padding-bottom: 5px;
     display: inline-block;
     line-height: 1;
     margin-top: 50px;
@@ -159,6 +163,7 @@ export default {
   }
   .about_title_container {
     border-bottom: solid 10px orange;
+    padding-bottom: 5px;
     display: inline-block;
     line-height: 1;
     margin-top: 50px;
@@ -186,5 +191,4 @@ export default {
     justify-content: space-between;
   }
 }
-
 </style>

@@ -120,6 +120,7 @@ export default {
 
 .study_title_container {
   border-bottom: solid 10px orange;
+  padding-bottom: 5px;
   display: inline-block;
   line-height: 1;
   margin-top: 50px;

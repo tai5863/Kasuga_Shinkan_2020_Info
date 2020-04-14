@@ -102,7 +102,7 @@ export default {
   methods: {
     checkControl: function(id){
       let checkbox = document.getElementById(id);
-      let container = document.getElementById('category_container');
+      let container = document.getElementById('checkbox_container');
       let radioNodeList = container.category;
       let value = radioNodeList.value;
       if (value == '' || value != checkbox.value) {
@@ -395,7 +395,7 @@ export default {
   text-align: left;
   margin-top: 20px;
 }
-p {
+.topic_container p {
   cursor: pointer;
   display: inline;
   padding: 0;
@@ -433,7 +433,7 @@ p {
   margin-bottom: 10px;
 }
 .form_title {
-  margin-top: 30px;
+  margin-top: 40px;
   margin-bottom: 15px;
 }
 #checkbox_container {

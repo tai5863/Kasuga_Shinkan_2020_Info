@@ -122,14 +122,12 @@ export default {
 }
 .form_title_container {
   border-bottom: solid 10px orange;
+  padding-bottom: 5px;
   display: inline-block;
   line-height: 1;
-  margin-top: 50px;
+  margin-top: 80px;
   width: 180px;
   margin-bottom: 10px;
-}
-form {
-  margin-top: 100px;
 }
 .add_question_title {  
   margin-bottom: 0px;

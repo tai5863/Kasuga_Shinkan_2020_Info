@@ -37,6 +37,7 @@ export default {
 }
 .title {
   border-bottom: solid 7px orange;
+  padding-bottom: 3px;
   display: inline-block;
   line-height: 1;
 }
