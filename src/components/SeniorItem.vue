@@ -7,7 +7,7 @@
         </label>
         <input type="checkbox" :id="item.title"/>
         <div class="hidden_show">
-          <p class="topic_content">{{ item.main }}</p>
+          <Main :main="item.main" class="topic_content"></Main>
           <div class="iframe_container" v-if="item.isYouTube">
             <iframe v-if="item.isYouTube" :src="item.youtube_link" frameborder="0" autoplay="0" allow="accelerometer; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
           </div>
@@ -18,9 +18,13 @@
 </template>
 
 <script>
+import Main from '@/components/Main.vue'
 
 export default {
   name: 'SeniorItem',
+  components: {
+    Main
+  },
   props: {
     item_list: Array
   },
