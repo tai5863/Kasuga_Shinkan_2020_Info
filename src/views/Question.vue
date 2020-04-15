@@ -147,7 +147,7 @@ export default {
             life_count = life_count + 1;
             life_list.push(response.data.question[i]);
             this.lifeList = life_list;
-          } else if (response.data.question[i].category == '先輩'){
+          } else if (response.data.question[i].category == '先輩') {
             senior_count = senior_count + 1;
             senior_list.push(response.data.question[i]);
             this.seniorList = senior_list;
@@ -367,6 +367,7 @@ export default {
 }
 .title_container {
   border-bottom: solid 10px orange;
+  padding-bottom: 5px;
   display: inline-block;
   line-height: 1;
   margin-top: 10px;

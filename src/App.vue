@@ -3,18 +3,13 @@
     <transition name="trans">
       <router-view :study_list="this.studyList" :life_list="this.lifeList" :senior_list="this.seniorList"></router-view>
     </transition>
-    <Footer id="footer"></Footer>
   </div>
 </template>
 
 <script>
-import Footer from './components/Footer.vue'
 
 export default {
   name: 'App',
-  components: {
-    Footer
-  },
   data () {
     return {
       studyList: [],
