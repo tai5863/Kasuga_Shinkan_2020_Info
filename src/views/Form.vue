@@ -67,7 +67,7 @@ export default {
   },
   mounted: function(){
     let eTopic = document.getElementById('topic');
-    eTopic.addEventListener('blur', this.judge);
+    eTopic.addEventListener('blur', this.judgeEdit);
   },
   methods: {
     checkControl: function(id){
