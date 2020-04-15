@@ -92,11 +92,6 @@ export default {
     display: inline;
     margin-left: 5%;
   }
-  .iframe_container {
-    display: inline;
-    margin-left: 10%;
-    margin-right: 10%;
-  }
   .topic_container input:checked ~ .hidden_show iframe{
     width: calc(25vw + 150px); 
     height: calc((25vw + 150px) * 0.5625);

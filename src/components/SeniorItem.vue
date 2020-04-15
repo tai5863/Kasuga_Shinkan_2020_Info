@@ -90,8 +90,7 @@ export default {
   }
   .iframe_container {
     display: inline;
-    margin-left: 10%;
-    margin-right: 10%;
+    margin-left: 5%;
   }
   .topic_container input:checked ~ .hidden_show iframe{
     width: calc(25vw + 150px); 
