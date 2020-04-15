@@ -177,13 +177,6 @@ export default {
         window.alert(error);
       });
     },
-    selectQuestion: function(question, isShow){
-
-      if (isShow) {
-        this.title = question.main;
-        this.category = question.category;
-      } 
-    },
     deleteQuestions: function(){
       let generator = confirm('本当に削除しますか？');
       if (generator == true) {
@@ -198,7 +191,7 @@ export default {
             this.getPost();
           })
           .catch(error => {
-            window.alert(error);
+            window.alert(error.response.data.message);
           });
       } else {
         return;
@@ -218,7 +211,7 @@ export default {
           let params = new URLSearchParams();
           params.append('title', this.title);
           params.append('category', this.category);
-          params.append('question_main', this.title);
+          // params.append('question_main', this.title);
           params.append('main', this.main);
           params.append('youtube_link', this.youtube_link);
           params.append('author', this.author);
@@ -234,7 +227,7 @@ export default {
             this.getPost();
           })
           .catch(error => {
-            window.alert(error);
+            window.alert(error.response.data.message);
           });
         } else {
           return;
@@ -316,8 +309,8 @@ export default {
     border-right-style: none;
   }
   .topic_container .check:checked:before {
-    -webkit-transform: rotate(-45deg) scale(0.75, 0.75);
-    transform: rotate(-45deg) scale(0.75, 0.75);
+    -webkit-transform: rotate(-45deg) scale(1.0, 1.0);
+    transform: rotate(-45deg) scale(1.0, 1.0);
   }
   .topic_container .check:after {
     position: absolute;
