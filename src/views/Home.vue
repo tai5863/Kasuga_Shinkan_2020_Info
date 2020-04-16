@@ -14,7 +14,7 @@
           <h1 class="about_title1">このサイト</h1>
           <h2 class="about_title2">について</h2>
         </div>
-        <p class="about_content">この春日新歓2020情報Weはb春日新歓委員が行うライブ配信の内容をベースに新入生向けのお役立ち情報をまとめたサイトです。各トピックごとに該当する生配信のリンクを張り付けているのでそちらの方も参考にしていただけるとより分かりやすいと思います。</p>
+        <p class="about_content">この春日新歓2020情報Webは春日新歓委員が行うライブ配信の内容をベースに新入生向けのお役立ち情報をまとめたサイトです。各トピックごとに該当する生配信のリンクを張り付けているのでそちらの方も参考にしていただけるとより分かりやすいと思います。</p>
         <p class="about_content">また、<a @click="openTwitter" id="twitter">春日新歓2020公式Twitterアカウント</a>でも質問を受け付けておりますのでぜひご活用ください。</p>
       </div>
       <div id="item_button_container">
@@ -47,8 +47,8 @@ export default {
     AddQuestion
   },
   created: function(){
-    this.$router.isPass = false;
-    this.$router.pass = '';
+    localStorage.isPass = 'false';
+    localStorage.pass = '';
   },
   methods: {
     openTwitter: function(){

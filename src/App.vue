@@ -17,7 +17,7 @@ export default {
       seniorList: []
     }
   },
-  created(){
+  created: function(){
     this.getPost();
   },
   methods: {

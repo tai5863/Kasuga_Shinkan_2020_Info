@@ -88,12 +88,17 @@ export default {
       main: '',
       youtube_link: '',
       author: '',
-      pass: this.$router.pass,
+      pass: localStorage.pass,
       isShow1: false,
       isShow2: false,
       isShow3: false,
       deleteArray: [],
       categoryList: ['大学', '生活', '先輩']
+    }
+  },
+  beforeCreate: function(){
+    if (localStorage.isPass == 'false') {
+      this.$router.push('/Authentication_for_committee_member/');
     }
   },
   created: function(){

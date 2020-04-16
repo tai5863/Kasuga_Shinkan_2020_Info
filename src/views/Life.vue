@@ -43,8 +43,8 @@ export default {
     }
   },
   created: function(){
-    this.$router.isPass = false;
-    this.$router.pass = '';
+    localStorage.isPass = 'false';
+    localStorage.pass = '';
   }
 }
 </script>

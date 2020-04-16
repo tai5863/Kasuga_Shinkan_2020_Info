@@ -25,7 +25,22 @@ export default {
   },
   data () {
     return {
-      pass: ''
+      pass: '',
+      isPass: false
+    }
+  },
+  mounted() {
+    localStorage.isPass = 'false';
+    this.isPass = localStorage.isPass;
+    localStorage.pass = '';
+    this.pass = localStorage.pass;
+  },
+  watch:{
+    isPass(value) {
+      localStorage.isPass = value;
+    },
+    pass(key) {
+      localStorage.pass = key;
     }
   },
   methods: {
@@ -35,10 +50,11 @@ export default {
       this.axios.post('https://kzkymur.com/api/password/', params)
       .then(response => {
         this.pass = '';
-        this.$router.isPass = response.data.result;
-        if (this.$router.isPass) {
+        localStorage.isPass = response.data.result;
+        this.isPass = localStorage.isPass;
+        if (this.isPass) {
           window.alert('正しく認証できました！');
-          this.$router.pass = response.data.key;
+          localStorage.pass = response.data.key;
           this.$router.push('/Authentication_for_committee_member/form');
         } else {
           window.alert('パスワードが正しくありません！');

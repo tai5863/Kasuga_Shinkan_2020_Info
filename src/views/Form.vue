@@ -59,10 +59,15 @@ export default {
       main: '',
       youtube_link: '',
       author: '',
-      pass: this.$router.pass,
+      pass: localStorage.pass,
       trueTitle: '',
       trueAuther: '',
       categoryList: ['大学', '生活', '先輩', 'edit']
+    }
+  },
+  beforeCreate: function(){
+    if (localStorage.isPass == 'false') {
+      this.$router.push('/Authentication_for_committee_member/');
     }
   },
   mounted: function(){
