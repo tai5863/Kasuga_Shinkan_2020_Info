@@ -41,10 +41,6 @@ export default {
     return {
       itemList: this.senior_list
     }
-  },
-  created: function(){
-    localStorage.isPass = 'false';
-    this.$router.pass = '';
   }
 }
 </script>

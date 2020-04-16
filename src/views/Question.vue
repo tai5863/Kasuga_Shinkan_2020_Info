@@ -10,7 +10,7 @@
           </div>
           <div class="topic_container" v-for="i in studyList.length" :key="i">
             <input class="check" type="checkbox" v-if="isShow1" :id="studyList[i - 1].id">
-            <p class="topic_content" @click="checkControl(studyList[i - 1].id)">{{ studyList[i - 1].main }}</p>
+            <p class="topic_content" @click="checkControl(studyList[i - 1].id)" draggable="true" @dragstart="setData($event, studyList[i - 1])">{{ studyList[i - 1].main }}</p>
           </div>
         </div>
         <div id="life_container" class="question">
@@ -20,7 +20,7 @@
           </div>
           <div class="topic_container" v-for="i in lifeList.length" :key="i">
             <input class="check" type="checkbox" v-if="isShow2" :id="lifeList[i - 1].id">
-            <p class="topic_content" @click="checkControl(lifeList[i - 1].id)">{{ lifeList[i - 1].main }}</p>
+            <p class="topic_content" @click="checkControl(lifeList[i - 1].id)" draggable="true" @dragstart="setData($event, lifeList[i - 1])">{{ lifeList[i - 1].main }}</p>
           </div>
         </div>
         <div id="senior_container" class="question">
@@ -30,7 +30,7 @@
           </div>
           <div class="topic_container" v-for="i in seniorList.length" :key="i">
             <input class="check" type="checkbox" v-if="isShow3" :id="seniorList[i - 1].id">
-            <p class="topic_content" @click="checkControl(seniorList[i - 1].id)">{{ seniorList[i - 1].main }}</p>
+            <p class="topic_content" @click="checkControl(seniorList[i - 1].id)" draggable="true" @dragstart="setData($event, seniorList[i - 1])">{{ seniorList[i - 1].main }}</p>
           </div>
         </div>
       </div>
@@ -39,7 +39,7 @@
         <form>
           <div class="item_container">
             <h2 class="form_title">見出し</h2>
-            <input type="text" class="input1" placeholder="例 : 履修はいつから？" v-model="title">
+            <input type="text" class="input1" placeholder="例 : 履修はいつから？" v-model="title" id="input_title"  @drop.prevent="inputQuestion($event)">
           </div>
           <div class="item_container" id="category_container">
             <h2 class="form_title">分類</h2>
@@ -85,10 +85,11 @@ export default {
       seniorList: [],
       title: '',
       category: '',
+      question: '',
       main: '',
       youtube_link: '',
       author: '',
-      pass: this.$router.pass,
+      pass: '',
       isShow1: false,
       isShow2: false,
       isShow3: false,
@@ -97,14 +98,29 @@ export default {
     }
   },
   beforeCreate: function(){
-    if (localStorage.isPass == 'false') {
+    if (localStorage.isPass != 'true') {
       this.$router.push('/Authentication_for_committee_member/');
     }
   },
   created: function(){
     this.getPost();
+    this.pass = localStorage.pass;
   },
   methods: {
+    setData: function(event, item){
+      let obj = {main: item.main, category: item.category};
+      let i = JSON.stringify(obj);
+      event.dataTransfer.setData("text/plain", i);
+    },
+    inputQuestion: function(event){
+      let question = event.dataTransfer.getData("text/plain");
+      question = JSON.parse(question);
+      this.title = question.main;
+      this.category = question.category;
+      let category = document.getElementById(question.category);
+      category.checked = true;
+      this.question = question.main;
+    },
     checkControl: function(id){
       let checkbox = document.getElementById(id);
       let container = document.getElementById('checkbox_container');
@@ -224,7 +240,7 @@ export default {
           let params = new URLSearchParams();
           params.append('title', this.title);
           params.append('category', this.category);
-          // params.append('question_main', this.title);
+          params.append('question_main', this.question);
           params.append('main', this.main);
           params.append('youtube_link', this.youtube_link);
           params.append('author', this.author);
@@ -235,6 +251,7 @@ export default {
             this.resetCategory();
             this.title = '';
             this.main = '';
+            this.question = '';
             this.youtube_link = '';
             this.author = '';
             this.getPost();

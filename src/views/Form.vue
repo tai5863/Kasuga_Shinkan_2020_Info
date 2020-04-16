@@ -59,20 +59,21 @@ export default {
       main: '',
       youtube_link: '',
       author: '',
-      pass: this.$router.pass,
+      pass: '',
       trueTitle: '',
       trueAuther: '',
       categoryList: ['大学', '生活', '先輩', 'edit']
     }
   },
   beforeCreate: function(){
-    if (localStorage.isPass == 'false') {
+    if (localStorage.isPass != 'true') {
       this.$router.push('/Authentication_for_committee_member/');
     }
   },
   mounted: function(){
     let eTopic = document.getElementById('topic');
     eTopic.addEventListener('blur', this.judgeEdit);
+    this.pass = localStorage.pass;
   },
   methods: {
     checkControl: function(id){
