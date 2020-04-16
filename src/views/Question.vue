@@ -387,6 +387,9 @@ export default {
     display: flex;
     justify-content: space-between;
   }
+  .topic_container {
+    max-width: 700px;
+  }
 }
 
 .question {
