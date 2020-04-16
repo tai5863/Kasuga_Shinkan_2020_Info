@@ -32,15 +32,11 @@ export default {
   mounted() {
     localStorage.isPass = 'false';
     this.isPass = localStorage.isPass;
-    localStorage.pass = '';
-    this.pass = localStorage.pass;
+    this.$router.pass = '';
   },
   watch:{
     isPass(value) {
       localStorage.isPass = value;
-    },
-    pass(key) {
-      localStorage.pass = key;
     }
   },
   methods: {
@@ -54,7 +50,7 @@ export default {
         this.isPass = localStorage.isPass;
         if (this.isPass) {
           window.alert('正しく認証できました！');
-          localStorage.pass = response.data.key;
+          this.$router.pass = response.data.key;
           this.$router.push('/Authentication_for_committee_member/form');
         } else {
           window.alert('パスワードが正しくありません！');

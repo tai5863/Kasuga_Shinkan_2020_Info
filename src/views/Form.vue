@@ -59,7 +59,7 @@ export default {
       main: '',
       youtube_link: '',
       author: '',
-      pass: localStorage.pass,
+      pass: this.$router.pass,
       trueTitle: '',
       trueAuther: '',
       categoryList: ['大学', '生活', '先輩', 'edit']

@@ -48,7 +48,7 @@ export default {
   },
   created: function(){
     localStorage.isPass = 'false';
-    localStorage.pass = '';
+    this.$router.pass = '';
   },
   methods: {
     openTwitter: function(){

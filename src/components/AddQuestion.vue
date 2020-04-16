@@ -49,6 +49,12 @@ export default {
       let value = radioNodeList.value;
       this.category = value;
     },
+    resetCategory: function(){
+      let container = document.getElementById('category_container');
+      let radioNodeList = container.category;
+      radioNodeList.value = '';
+      this.category = radioNodeList.value;
+    },
     send: function(){
       this.setCategory();
       if (this.category == '') {
@@ -64,7 +70,7 @@ export default {
         this.axios.post('https://kzkymur.com/api/manage_question/', params)
         .then(() => {
           window.alert('正しく投稿できました！🎉');
-          this.category = '';
+          this.resetCategory();
           this.question = '';
         })
         .catch(error => {

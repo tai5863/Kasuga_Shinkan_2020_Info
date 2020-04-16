@@ -88,7 +88,7 @@ export default {
       main: '',
       youtube_link: '',
       author: '',
-      pass: localStorage.pass,
+      pass: this.$router.pass,
       isShow1: false,
       isShow2: false,
       isShow3: false,
