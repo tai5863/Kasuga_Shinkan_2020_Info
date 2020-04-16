@@ -90,6 +90,14 @@ export default {
       let value = radioNodeList.value;
       this.category = value;
     },
+    resetCategory: function(){
+      for (let i = 0; i < this.categoryList.length; i++) {
+        let id = this.categoryList[i];
+        let checkbox = document.getElementById(id);
+        checkbox.checked = false;
+      }
+      this.category = '';
+    },
     judgeEdit: function(){
       this.setCategory();
       if (this.category == 'edit') {
@@ -146,8 +154,8 @@ export default {
             } else {
               window.alert('正しく投稿できました！🎉');
             }
+            this.resetCategory();
             this.title = '';
-            this.category = '';
             this.main = '';
             this.youtube_link = '';
             this.author = '';

@@ -50,10 +50,12 @@ export default {
       this.category = value;
     },
     resetCategory: function(){
-      let container = document.getElementById('category_container');
-      let radioNodeList = container.category;
-      radioNodeList.value = '';
-      this.category = radioNodeList.value;
+      for (let i = 0; i < this.categoryList.length; i++) {
+        let id = this.categoryList[i];
+        let checkbox = document.getElementById(id);
+        checkbox.checked = false;
+      }
+      this.category = '';
     },
     send: function(){
       this.setCategory();
