@@ -63,9 +63,6 @@ export default {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-#footer {
-  margin-top: 50px;
-}
 .trans-enter {
   opacity: 0;
 }
@@ -73,6 +70,6 @@ export default {
   opacity: 1;
 }
 .trans-enter-active {
-  transition: all 1.5s 0s;
+  transition: all 1s 0s;
 }
 </style>
