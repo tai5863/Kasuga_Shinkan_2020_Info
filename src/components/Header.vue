@@ -26,96 +26,33 @@ export default {
 </script>
 
 <style>
-@media screen and (max-width: 480px){
-  #header_comp {
-    background-color: rgb(20, 20, 20);
-    overflow: hidden;
-    text-align: center;
-  }
-  #logo {
-    padding-top: 25px;
-    width: 75px;
-    height: 75px;
-    cursor: pointer;
-  }
-  #page_title {
-    color: white;
-    font-size: 25px;
-    line-height: 45px;
-    padding-bottom: 30px;
-    cursor: pointer;
-  }
-  a:-webkit-any-link {
-    color: rgba(0.0, 0.0, 0.0, 0.0);
+#header_comp {
+  background-color: rgb(20, 20, 20);
+  overflow: hidden;
+  text-align: center;
 }
-  #twitter_icon {
-    position: absolute;
-    width: 32px;
-    height: 32px;
-    top: 180px;
-    right: 10px;
-    cursor: pointer;
-  }
+#logo {
+  padding-top: 25px;
+  width: 75px;
+  height: 75px;
+  cursor: pointer;
 }
-
-@media screen and (min-width: 481px) and (max-width: 780px){
-  #header_comp {
-    background-color: rgb(20, 20, 20);
-    overflow: hidden;
-    text-align: center;
-  }
-  #logo {
-    padding-top: 25px;
-    width: 75px;
-    height: 75px;
-    cursor: pointer;
-  }
-  #page_title {
-    color: white;
-    font-size: 25px;
-    line-height: 45px;
-    padding-bottom: 30px;
-    cursor: pointer;
-  }
-  a:-webkit-any-link {
-    color: rgba(0.0, 0.0, 0.0, 0.0);
+#page_title {
+  color: white;
+  font-size: 25px;
+  line-height: 45px;
+  padding-bottom: 30px;
+  cursor: pointer;
 }
-  #twitter_icon {
-    position: absolute;
-    width: 32px;
-    height: 32px;
-    top: 180px;
-    right: 10px;
-    cursor: pointer;
-  }
+a:-webkit-any-link {
+  color: rgba(0.0, 0.0, 0.0, 0.0);
 }
-
-@media screen and (min-width: 781px){
-  #header_comp {
-    background-color: rgb(20, 20, 20);
-    overflow: hidden;
-  }
-  #logo {
-    width: 80px;
-    float: left;
-    margin-top: 10px;
-    margin-left: 125px;
-    cursor: pointer;
-  }
-  #page_title {
-    color: white;
-    font-size: 25px;
-    float: left;
-    line-height: 75px;
-    margin-left: 40px;
-    cursor: pointer;
-  }
-  #twitter_icon {
-    width: 32px;
-    float: right;
-    margin-right: 20px;
-    margin-top: 75px;
-    cursor: pointer;
-  }
+#twitter_icon {
+  position: absolute;
+  width: 32px;
+  height: 32px;
+  top: 180px;
+  right: 10px;
+  cursor: pointer;
 }
 </style>

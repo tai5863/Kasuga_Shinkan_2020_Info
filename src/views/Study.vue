@@ -46,71 +46,45 @@ export default {
 </script>
 
 <style scoped>
-@media screen and (max-width: 480px){
+#container {
+  text-align: left;
+}
+.study_title1 {
+  font-size: 40px;
+  display: inline;
+}
+.study_title2 { 
+  font-size: 30px;
+  display: inline;
+}
+#item_button_container {
+  max-width: 600px;
+  margin: auto;
+  margin-top: 80px;
+  display: flex;
+  justify-content: space-between;
+}
+
+@media screen and (max-width: 1000px){
   #container {
-    margin-left: 50px;
-    margin-right: 50px;
-    text-align: center;
-  }
-  .study_title1 {
-    font-size: 40px;
-    display: inline;
-  }
-  .study_title2 { 
-    font-size: 30px;
-    display: inline;
-  }
-  #item_button_container {
-    margin-top: 40px;
+    margin-left: 20%;
+    margin-right: 20%;
   }
 }
 
-@media screen and (min-width: 481px) and (max-width: 780px){
+@media screen and (max-width: 780px){
   #container {
-    color: rgb(75, 75, 75);
-    margin-left: 50px;
-    margin-right: 50px;
-  }
-  .study_title1 {
-    font-size: 40px;
-    display: inline;
-  }
-  .study_title2 { 
-    font-size: 30px;
-    display: inline;
+    text-align: center;
+    margin-left: 15%;
+    margin-right: 15%;
   }
   #item_button_container {
-    max-width: 600px;
-    margin: auto;
-    margin-top: 80px;
+    display: block;
   }
   .item_button {
     width: 80%;
     margin: 0 auto;
     margin-top: 30px;
-  }
-}
-
-@media screen and (min-width: 781px){
-  #container {
-    color: rgb(75, 75, 75);
-    margin-left: 125px;
-    margin-right: 125px;
-  }
-  .study_title1 {
-    font-size: 40px;
-    display: inline;
-  }
-  .study_title2 { 
-    font-size: 30px;
-    display: inline;
-  }
-  #item_button_container {
-    max-width: 600px;
-    margin: auto;
-    margin-top: 80px;
-    display: flex;
-    justify-content: space-between;
   }
 }
 

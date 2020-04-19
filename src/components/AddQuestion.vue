@@ -120,12 +120,11 @@ export default {
     height: 1rem;
     content: '';
     cursor: pointer;
-    border: 2px solid rgb(75, 75, 75);
+    border: 2px solid rgb(50, 50, 50);
     background: #ffffff;
   }
 }
 #form_container {
-  color: rgb(75, 75, 75);
   text-align: center;
 }
 .form_title_container {

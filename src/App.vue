@@ -62,6 +62,7 @@ export default {
   font-family: "游ゴシック", "Yu Gothic", "游ゴシック体", YuGothic, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  color: rgb(50, 50, 50);
 }
 .trans-enter {
   opacity: 0;

@@ -23,7 +23,7 @@ export default {
 #item_button {
   width: 180px;
   height: 270px;
-  border: 10px solid rgb(75, 75, 75);
+  border: 10px solid rgb(50, 50, 50);
   text-align: center;
   cursor: pointer;
 }
@@ -47,7 +47,7 @@ export default {
 }
 #title_container {
   margin-top: 10px;
-  color: rgb(75, 75, 75);
+  color: rgb(50, 50, 50);
 }
 h1 {
   font-size: 35px;

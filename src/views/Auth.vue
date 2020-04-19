@@ -31,6 +31,7 @@ export default {
   },
   mounted() {
     this.isPass = localStorage.isPass;
+    console.log(this.isPass);
   },
   watch:{
     isPass(value) {
@@ -46,6 +47,7 @@ export default {
         this.pass = '';
         localStorage.isPass = response.data.result;
         this.isPass = localStorage.isPass;
+        console.log(this.isPass);
         if (this.isPass) {
           window.alert('正しく認証できました！');
           localStorage.pass = response.data.key;
@@ -95,20 +97,6 @@ form {
   font-family: "游ゴシック", "Yu Gothic", "游ゴシック体", YuGothic, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-}
-.input2 {
-  width: calc(80% + 12px);
-  height: 200px;
-  max-width: 1012px;
-  border: 2px solid rgba(0, 0, 0, 0.3);
-  border-radius: 7px;
-  font-size: 17px;
-  font-weight: 500;
-  padding: 15px;
-  font-family: "游ゴシック", "Yu Gothic", "游ゴシック体", YuGothic, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  resize: none;
 }
 .send {
   -webkit-appearance: none;

@@ -37,73 +37,15 @@ export default {
 </script>
 
 <style scoped>
-@media screen and (max-width: 480px) {
-  .topic {
-    font-size: 20px;
-    margin: 0;
-    text-align: left;
-  }
-}
-
-@media screen and (min-width: 481px) and (max-width: 780px){
-  .topic { 
-    font-size: 20px;
-    display: inline;
-    cursor: pointer;
-  }
-  .topic_content {
-    margin: 0 30px;
-  }
-}
-
-@media screen and (min-width: 780px){
-  .topic { 
-    font-size: 25px;
-    display: inline;
-    cursor: pointer;
-  }
-  .topic_content {
-    margin: 0 50px;
-  }
-}
-
-@media screen and (max-width: 1200px) {
-  .iframe_container {
-    text-align: center;
-  }
-  .iframe_container iframe {
-     margin-top: 5vw;
-  }
-  .topic_container input:checked ~ .hidden_show iframe{
-    width: calc(30vw + 150px); 
-    height: calc((30vw + 150px) * 0.5625);
-  }
-}
-
-@media screen and (min-width: 1201px){
-  .topic_container input:checked ~ .hidden_show {
-    display: flex;
-    justify-content: space-between;
-  }
-  p {
-    display: inline;
-  }
-  .iframe_container {
-    display: inline;
-    margin-left: 5%;
-  }
-  .topic_container input:checked ~ .hidden_show iframe{
-    width: calc(25vw + 150px); 
-    height: calc((25vw + 150px) * 0.5625);
-  }
-}
-
 .topic_container {
   margin-top: 30px;
+  text-align: left;
 }
 .topic_content {
-  margin-top: 15px;
+  margin-top: 0;
   font-weight: 1000;
+  padding-right: 5%;
+  line-height: 2.5rem;
 }
 .topic_container input {
   display: none;
@@ -123,5 +65,38 @@ export default {
   padding: 5px 0;
   height: auto;
   opacity: 1;
+}
+.topic_container input:checked ~ .hidden_show iframe{
+  width: calc(20vw + 150px); 
+  height: calc((20vw + 150px) * 0.5625);
+}
+.topic_container input:checked ~ .hidden_show {
+  display: flex;
+  justify-content: space-between;
+}
+
+@media screen and (max-width: 1300px){  
+  .topic_content {
+    padding-right: 0;
+  }
+  .iframe_container {
+    text-align: center;
+  }
+  .iframe_container iframe {
+    margin-top: 5vw;
+  }
+  .topic_container input:checked ~ .hidden_show iframe{
+    width: calc(30vw + 150px); 
+    height: calc((30vw + 150px) * 0.5625);
+  }
+  .topic_container input:checked ~ .hidden_show {
+    display: block;
+  }
+}
+
+@media screen and (max-width: 480px){
+  .topic { 
+    font-size: 22px;
+  }
 }
 </style>
