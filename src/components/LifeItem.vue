@@ -37,6 +37,9 @@ export default {
 </script>
 
 <style scoped>
+.topic {
+  cursor: pointer;
+}
 .topic_container {
   margin-top: 30px;
   text-align: left;
