@@ -1,8 +1,6 @@
 <template>
   <div id="app">
-    <transition name="trans">
-      <router-view :study_list="this.studyList" :life_list="this.lifeList" :senior_list="this.seniorList"></router-view>
-    </transition>
+    <router-view :study_list="this.studyList" :life_list="this.lifeList" :senior_list="this.seniorList"></router-view>
   </div>
 </template>
 
@@ -63,14 +61,5 @@ export default {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: rgb(50, 50, 50);
-}
-.trans-enter {
-  opacity: 0;
-}
-.trans-enter-to {
-  opacity: 1;
-}
-.trans-enter-active {
-  transition: all 1s 0s;
 }
 </style>

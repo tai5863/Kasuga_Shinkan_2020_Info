@@ -41,6 +41,9 @@ export default {
     return {
       itemList: this.life_list
     }
+  },
+  mounted: function(){
+    window.scrollTo(0, 0);
   }
 }
 </script>

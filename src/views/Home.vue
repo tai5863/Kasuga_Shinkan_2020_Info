@@ -43,6 +43,9 @@ export default {
     ItemButton03,
     AddQuestion
   },
+  mounted: function(){
+    window.scrollTo(0, 0);
+  },
   methods: {
     openTwitter: function(){
       const url = "https://twitter.com/kasuga2020?s=20";
