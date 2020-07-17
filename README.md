@@ -1,24 +1,5 @@
-# kasuga-shinkan-info
+# KasugaShinkan2020Info
 
-## Project setup
-```
-yarn install
-```
+2020年度筑波大学情報メディア創成学類・図書館情報学類新入生のための情報まとめサイト. 
 
-### Compiles and hot-reloads for development
-```
-yarn serve
-```
-
-### Compiles and minifies for production
-```
-yarn build
-```
-
-### Lints and fixes files
-```
-yarn lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+*COVID19*の感染拡大によってまともな新歓が出来ず, なかなか新入生が情報を得ることができない状況にあったため作成した.
